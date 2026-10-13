@@ -1056,3 +1056,34 @@ MSI
 
 
 © 2026 G-M Service. Все права защищены
+document.addEventListener('DOMContentLoaded', () => {
+// Логика табов цен
+const tabButtons = document.querySelectorAll('#priceTabs .cat-btn-vertical');
+const tabContents = document.querySelectorAll('.price-tab-content');
+tabButtons.forEach(button => {
+button.addEventListener('click', () => {
+const targetTabId = button.getAttribute('data-tab');
+tabButtons.forEach(btn => btn.classList.remove('active'));
+tabContents.forEach(content => content.classList.remove('active'));
+button.classList.add('active');
+document.getElementById(targetTabId).classList.add('active');
+});
+});
+// Логика аккордеона FAQ
+const faqItems = document.querySelectorAll('.faq-item-node');
+faqItems.forEach(item => {
+const trigger = item.querySelector('.faq-trigger-button');
+const content = item.querySelector('.faq-content-panel');
+trigger.addEventListener('click', () => {
+const isActive = item.classList.contains('active');
+faqItems.forEach(i => {
+i.classList.remove('active');
+i.querySelector('.faq-content-panel').style.display = 'none';
+});
+if (!isActive) {
+item.classList.add('active');
+content.style.display = 'block';
+}
+});
+});
+});
