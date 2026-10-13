@@ -4,19 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>G-M Service — Федеральная сеть ремонта цифровой техники</title>
-<meta name="description" content="G-M Service — сеть сервисных центров в 47 городах России. Ремонт смартфонов, ноутбуков, планшетов и техники Apple. 20 минут — и ваш гаджет как новый.">
 <style>
-/* ============================================================
-   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-   ============================================================ */
 :root {
   --black: #050505;
   --dark: #0d0d0d;
-  --dark-2: #141414;
   --card: #171717;
   --line: rgba(255,255,255,0.07);
   --orange: #FF7A00;
-  --orange-2: #FF9500;
   --yellow: #FFD400;
   --white: #FFFFFF;
   --grey: #A0A0A0;
@@ -29,12 +23,11 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   background: var(--black);
   color: var(--white);
   overflow-x: hidden;
   line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; display: block; }
@@ -47,82 +40,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 0 32px;
 }
 
-/* ============================================================
-   ТИПОГРАФИКА
-   ============================================================ */
-.h1 {
-  font-size: clamp(38px, 5vw, 72px);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -1.5px;
-}
-.h2 {
-  font-size: clamp(30px, 3.6vw, 52px);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
-}
-.h3 {
-  font-size: clamp(22px, 2vw, 30px);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-}
-.lead {
-  font-size: clamp(16px, 1.3vw, 20px);
-  color: var(--grey);
-  line-height: 1.6;
-}
+.h1 { font-size: clamp(38px, 5vw, 72px); font-weight: 900; line-height: 1.05; letter-spacing: -1.5px; }
+.h2 { font-size: clamp(30px, 3.6vw, 52px); font-weight: 900; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+.h3 { font-size: clamp(22px, 2vw, 30px); font-weight: 800; line-height: 1.2; }
+.lead { font-size: clamp(16px, 1.3vw, 20px); color: var(--grey); line-height: 1.6; }
 .accent { color: var(--yellow); }
-.accent-o { color: var(--orange); }
-.gradient-text {
-  background: linear-gradient(120deg, var(--yellow) 0%, var(--orange) 60%, #FF5500 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
 
 .section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 18px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 18px;
 }
 .section-label::before {
-  content: '';
-  width: 28px; height: 2px;
-  background: var(--orange);
-  box-shadow: 0 0 8px var(--orange);
+  content: ''; width: 28px; height: 2px;
+  background: var(--orange); box-shadow: 0 0 8px var(--orange);
 }
 
-section {
-  padding: 110px 0;
-  position: relative;
-}
+section { padding: 110px 0; position: relative; }
 
-/* ============================================================
-   КНОПКИ
-   ============================================================ */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 18px 36px;
-  font-size: 16px;
-  font-weight: 800;
-  border-radius: 14px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: -0.2px;
-  white-space: nowrap;
-  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 18px 36px; font-size: 16px; font-weight: 800;
+  border-radius: 14px; transition: all 0.25s; white-space: nowrap;
+  cursor: pointer; font-family: inherit;
 }
 .btn:hover { transform: translateY(-3px); }
 .btn-primary {
@@ -140,26 +80,12 @@ section {
   background: rgba(255,255,255,0.1);
   border-color: rgba(255,122,0,0.5);
 }
-.btn-ghost {
-  background: transparent;
-  color: var(--yellow);
-  border: 2px solid var(--orange);
-}
-.btn-ghost:hover {
-  background: rgba(255,122,0,0.1);
-  box-shadow: 0 0 24px rgba(255,122,0,0.35);
-}
 .btn-lg { padding: 22px 44px; font-size: 18px; }
-.btn-sm { padding: 12px 22px; font-size: 14px; }
 
-/* ============================================================
-   ШАПКА
-   ============================================================ */
+/* ШАПКА */
 .topnav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(5,5,5,0.7);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(5,5,5,0.75);
   backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--line);
   transition: all 0.3s;
@@ -170,177 +96,90 @@ section {
   box-shadow: 0 4px 30px rgba(0,0,0,0.5);
 }
 .topnav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   height: 76px;
 }
-
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 22px; font-weight: 900; letter-spacing: -0.5px;
 }
 .brand-mark {
-  width: 42px; height: 42px;
-  border-radius: 12px;
+  width: 42px; height: 42px; border-radius: 12px;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-size: 22px;
   box-shadow: 0 8px 24px rgba(255,122,0,0.5);
-  position: relative;
 }
-.brand-mark::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--yellow), var(--orange));
-  filter: blur(12px);
-  opacity: 0.5;
-  z-index: -1;
-}
-.brand-text { color: var(--white); }
 .brand-text span { color: var(--yellow); }
 
 .nav-menu {
-  display: flex;
-  gap: 34px;
-  align-items: center;
+  display: flex; gap: 34px; align-items: center;
 }
 .nav-menu a {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--grey);
-  transition: color 0.2s;
-  position: relative;
+  font-size: 14px; font-weight: 600; color: var(--grey);
+  transition: color 0.2s; position: relative;
 }
 .nav-menu a:hover { color: var(--yellow); }
-.nav-menu a::after {
-  content: '';
-  position: absolute;
-  bottom: -6px; left: 0;
-  width: 0; height: 2px;
-  background: var(--orange);
-  transition: width 0.25s;
-  box-shadow: 0 0 6px var(--orange);
-}
-.nav-menu a:hover::after { width: 100%; }
 
 .nav-phone {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
 }
 .nav-phone a {
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--yellow);
-  letter-spacing: -0.3px;
+  font-size: 17px; font-weight: 800; color: var(--yellow);
 }
 .nav-phone small {
-  font-size: 11px;
-  color: var(--grey-dark);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 11px; color: var(--grey-dark);
+  text-transform: uppercase; letter-spacing: 1px;
 }
 
-/* ============================================================
-   HERO
-   ============================================================ */
+/* HERO */
 .hero {
-  min-height: 100vh;
-  padding: 130px 0 60px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh; padding: 130px 0 60px;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
 }
 .hero::before {
-  content: '';
-  position: absolute;
-  top: -30%; right: -20%;
-  width: 900px; height: 900px;
+  content: ''; position: absolute;
+  top: -30%; right: -20%; width: 900px; height: 900px;
   background: radial-gradient(circle, rgba(255,122,0,0.22) 0%, transparent 60%);
   filter: blur(60px);
-  animation: pulse 8s ease-in-out infinite alternate;
 }
 .hero::after {
-  content: '';
-  position: absolute;
-  bottom: -30%; left: -20%;
-  width: 700px; height: 700px;
+  content: ''; position: absolute;
+  bottom: -30%; left: -20%; width: 700px; height: 700px;
   background: radial-gradient(circle, rgba(255,212,0,0.14) 0%, transparent 60%);
   filter: blur(60px);
-  animation: pulse 10s ease-in-out infinite alternate-reverse;
 }
-@keyframes pulse {
-  0%   { transform: scale(1) translate(0,0); opacity: 0.8; }
-  100% { transform: scale(1.15) translate(40px,-30px); opacity: 1; }
-}
-
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 80px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 2;
 }
-
 .hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  display: inline-flex; align-items: center; gap: 12px;
   padding: 10px 18px;
   background: rgba(255,122,0,0.1);
   border: 1px solid rgba(255,122,0,0.35);
   border-radius: 100px;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--yellow);
+  font-size: 13px; font-weight: 700; color: var(--yellow);
   margin-bottom: 28px;
-  letter-spacing: 0.3px;
 }
 .hero-eyebrow .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
   background: var(--green);
   box-shadow: 0 0 10px var(--green);
-  animation: blink 2s infinite;
 }
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
 .hero .h1 { margin-bottom: 24px; }
 .hero .lead { margin-bottom: 40px; max-width: 560px; font-size: 19px; }
-
 .hero-cta {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 44px;
+  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 44px;
 }
-
 .hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  padding-top: 36px;
-  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; padding-top: 36px; border-top: 1px solid var(--line);
 }
 .hero-stat .num {
-  font-size: 40px;
-  font-weight: 900;
-  line-height: 1;
+  font-size: 40px; font-weight: 900; line-height: 1;
   letter-spacing: -1.5px;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
   -webkit-background-clip: text;
@@ -348,175 +187,81 @@ section {
   -webkit-text-fill-color: transparent;
 }
 .hero-stat .label {
-  font-size: 13px;
-  color: var(--grey);
-  margin-top: 8px;
-  line-height: 1.4;
+  font-size: 13px; color: var(--grey); margin-top: 8px; line-height: 1.4;
 }
 
-/* ============================================================
-   ВИЗУАЛЬНАЯ ЧАСТЬ HERO
-   ============================================================ */
 .hero-visual {
-  position: relative;
-  aspect-ratio: 1;
+  position: relative; aspect-ratio: 1;
 }
-.hero-visual .orb {
-  position: absolute;
-  inset: 5%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,212,0,0.3), rgba(255,122,0,0.15) 40%, transparent 70%);
-  filter: blur(20px);
-  animation: rotate 30s linear infinite;
-}
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
 .hero-card {
   position: absolute;
   background: rgba(20,20,20,0.9);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255,122,0,0.3);
   border-radius: 20px;
-  padding: 20px 24px;
+  padding: 18px 22px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  animation: float 6s ease-in-out infinite;
 }
-.hero-card-1 {
-  top: 8%; left: 0;
-  animation-delay: 0s;
-}
-.hero-card-2 {
-  top: 42%; right: 0;
-  animation-delay: 1.5s;
-}
-.hero-card-3 {
-  bottom: 8%; left: 15%;
-  animation-delay: 3s;
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-16px); }
-}
-
-.hero-card .hc-icon {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-.hero-card .hc-title {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--yellow);
-  margin-bottom: 4px;
-}
-.hero-card .hc-sub {
-  font-size: 12px;
-  color: var(--grey);
-}
+.hero-card-1 { top: 5%; left: 0; }
+.hero-card-2 { top: 42%; right: 0; }
+.hero-card-3 { bottom: 5%; left: 12%; }
+.hero-card .hc-icon { font-size: 24px; margin-bottom: 6px; }
+.hero-card .hc-title { font-size: 15px; font-weight: 800; color: var(--yellow); }
+.hero-card .hc-sub { font-size: 12px; color: var(--grey); }
 
 .hero-phone-mock {
-  position: absolute;
-  top: 50%; left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 55%;
-  aspect-ratio: 9 / 19;
+  width: 55%; aspect-ratio: 9 / 19;
   background: linear-gradient(160deg, #1a1a1a, #0a0a0a);
-  border-radius: 42px;
-  border: 3px solid #2a2a2a;
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.8),
-    inset 0 0 60px rgba(255,122,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 42px; border: 3px solid #2a2a2a;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 0 60px rgba(255,122,0,0.1);
   overflow: hidden;
 }
 .hero-phone-mock::before {
-  content: '';
-  position: absolute;
-  top: 14px; left: 50%;
-  transform: translateX(-50%);
+  content: ''; position: absolute;
+  top: 14px; left: 50%; transform: translateX(-50%);
   width: 90px; height: 26px;
-  background: #050505;
-  border-radius: 20px;
+  background: #050505; border-radius: 20px;
+  z-index: 2;
 }
 .hero-phone-screen {
-  position: absolute;
-  inset: 8px;
-  border-radius: 36px;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(255,122,0,0.3), transparent 60%),
-    linear-gradient(160deg, #1a1a1a, #000);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 40px 24px;
+  position: absolute; inset: 8px; border-radius: 36px;
+  background: radial-gradient(circle at 50% 30%, rgba(255,122,0,0.3), transparent 60%),
+              linear-gradient(160deg, #1a1a1a, #000);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; padding: 40px 24px;
 }
 .hero-phone-screen .ps-icon {
   font-size: 56px;
   filter: drop-shadow(0 0 20px rgba(255,122,0,0.6));
 }
 .hero-phone-screen .ps-text {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--yellow);
-  text-align: center;
-  line-height: 1.4;
+  font-size: 14px; font-weight: 700; color: var(--yellow);
+  text-align: center; line-height: 1.4;
 }
 .hero-phone-screen .ps-bar {
-  width: 100%;
-  height: 8px;
+  width: 100%; height: 8px;
   background: rgba(255,255,255,0.08);
-  border-radius: 4px;
-  overflow: hidden;
+  border-radius: 4px; overflow: hidden;
   margin-top: 10px;
 }
 .hero-phone-screen .ps-bar div {
-  height: 100%;
-  width: 78%;
+  height: 100%; width: 78%;
   background: linear-gradient(90deg, var(--orange), var(--yellow));
   box-shadow: 0 0 14px var(--orange);
-  animation: fillBar 3s ease-in-out infinite alternate;
-}
-@keyframes fillBar {
-  0% { width: 30%; }
-  100% { width: 92%; }
 }
 
-/* ============================================================
-   ЛЕНТА ЛОГОТИПОВ
-   ============================================================ */
+/* ЛЕНТА БРЕНДОВ */
 .brands-strip {
   padding: 40px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  overflow: hidden;
-  position: relative;
-}
-.brands-strip::before,
-.brands-strip::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 120px;
-  z-index: 2;
-  pointer-events: none;
-}
-.brands-strip::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--black), transparent);
-}
-.brands-strip::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--black), transparent);
+  overflow: hidden; position: relative;
 }
 .brands-track {
-  display: flex;
-  gap: 80px;
+  display: flex; gap: 80px;
   animation: scroll 40s linear infinite;
   width: max-content;
 }
@@ -525,60 +270,31 @@ section {
   to   { transform: translateX(-50%); }
 }
 .brand-logo {
-  font-size: 26px;
-  font-weight: 900;
+  font-size: 26px; font-weight: 900;
   color: rgba(255,255,255,0.25);
   letter-spacing: -1px;
   white-space: nowrap;
-  transition: color 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
-.brand-logo:hover { color: rgba(255,212,0,0.6); }
 
-/* ============================================================
-   ЦИФРЫ
-   ============================================================ */
-.numbers {
-  background: linear-gradient(180deg, var(--black), var(--dark));
-}
+/* ЦИФРЫ */
+.numbers { background: linear-gradient(180deg, var(--black), var(--dark)); }
 .numbers-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
 }
 .number-card {
-  text-align: center;
-  padding: 40px 20px;
+  text-align: center; padding: 40px 20px;
   border-radius: 20px;
   background: rgba(255,255,255,0.02);
   border: 1px solid var(--line);
   transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.number-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 60%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--orange), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
 }
 .number-card:hover {
   border-color: rgba(255,122,0,0.4);
   background: rgba(255,122,0,0.04);
   transform: translateY(-6px);
 }
-.number-card:hover::before { opacity: 1; }
-
 .number-card .big {
-  font-size: 62px;
-  font-weight: 900;
-  line-height: 1;
+  font-size: 62px; font-weight: 900; line-height: 1;
   letter-spacing: -3px;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
   -webkit-background-clip: text;
@@ -586,193 +302,62 @@ section {
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
 }
-.number-card .big span {
-  font-size: 32px;
-  vertical-align: top;
-}
 .number-card .desc {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.5;
-  font-weight: 500;
+  font-size: 14px; color: var(--grey); line-height: 1.5; font-weight: 500;
 }
 
-/* ============================================================
-   УСЛУГИ
-   ============================================================ */
-.services {
-  background: var(--dark);
-}
+/* УСЛУГИ */
+.services { background: var(--dark); }
 .services-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 40px;
-  margin-bottom: 60px;
-  flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 40px; margin-bottom: 60px; flex-wrap: wrap;
 }
-.services-head .h2 { max-width: 600px; margin-bottom: 0; }
-
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
 }
 .service-card {
-  position: relative;
-  padding: 36px 32px;
+  position: relative; padding: 36px 32px;
   background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
   border: 1px solid var(--line);
   border-radius: 24px;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  cursor: pointer;
-}
-.service-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  background: radial-gradient(circle at top right, rgba(255,122,0,0.15), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.35s;
-  pointer-events: none;
+  transition: all 0.35s;
 }
 .service-card:hover {
   transform: translateY(-8px);
   border-color: rgba(255,122,0,0.5);
   box-shadow: 0 24px 60px rgba(255,122,0,0.15);
 }
-.service-card:hover::after { opacity: 1; }
-
 .service-card .sc-icon {
-  width: 68px; height: 68px;
-  border-radius: 18px;
+  width: 68px; height: 68px; border-radius: 18px;
   background: linear-gradient(135deg, rgba(255,212,0,0.15), rgba(255,122,0,0.15));
   border: 1px solid rgba(255,122,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  margin-bottom: 24px;
-  transition: transform 0.3s;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; margin-bottom: 24px;
 }
-.service-card:hover .sc-icon { transform: scale(1.1) rotate(-4deg); }
-
-.service-card h3 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
-.service-card p {
-  font-size: 15px;
-  color: var(--grey);
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
+.service-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+.service-card p { font-size: 15px; color: var(--grey); line-height: 1.6; margin-bottom: 24px; }
 .service-card .sc-price {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  font-size: 14px;
-  color: var(--grey);
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  display: flex; align-items: baseline; gap: 8px;
+  font-size: 14px; color: var(--grey);
+  padding-top: 20px; border-top: 1px solid var(--line);
 }
 .service-card .sc-price strong {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--yellow);
-  letter-spacing: -1px;
-}
-.service-card .sc-arrow {
-  position: absolute;
-  top: 36px; right: 32px;
-  font-size: 22px;
-  color: var(--orange);
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.3s;
-}
-.service-card:hover .sc-arrow {
-  opacity: 1;
-  transform: translateX(0);
+  font-size: 26px; font-weight: 900; color: var(--yellow); letter-spacing: -1px;
 }
 
-/* ============================================================
-   КАЛЬКУЛЯТОР
-   ============================================================ */
-.calc {
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,122,0,0.1), transparent 50%),
-    var(--black);
-}
+/* КАЛЬКУЛЯТОР */
+.calc { background: radial-gradient(circle at 20% 30%, rgba(255,122,0,0.1), transparent 50%), var(--black); }
 .calc-shell {
-  max-width: 980px;
-  margin: 0 auto;
+  max-width: 980px; margin: 0 auto;
   background: linear-gradient(160deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   border: 1px solid rgba(255,122,0,0.25);
-  border-radius: 32px;
-  padding: 56px 48px;
+  border-radius: 32px; padding: 56px 48px;
   box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
-.calc-shell::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--orange), var(--yellow), var(--orange), transparent);
-}
-
-.calc-steps {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-.calc-step {
-  flex: 1;
-  min-width: 180px;
-  padding: 18px 22px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--line);
-  transition: all 0.3s;
-  position: relative;
-}
-.calc-step.active {
-  background: rgba(255,122,0,0.1);
-  border-color: var(--orange);
-  box-shadow: 0 0 24px rgba(255,122,0,0.2);
-}
-.calc-step.done {
-  border-color: rgba(37,211,102,0.4);
-  background: rgba(37,211,102,0.05);
-}
-.calc-step .cs-num {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: var(--orange);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.calc-step.active .cs-num { color: var(--yellow); }
-.calc-step.done .cs-num { color: var(--green); }
-.calc-step .cs-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--white);
-}
-
 .calc-form {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-bottom: 32px;
 }
 .calc-form select {
   padding: 20px 22px;
@@ -780,232 +365,106 @@ section {
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
   color: var(--white);
-  font-size: 15px;
-  font-weight: 600;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.25s;
+  font-size: 15px; font-weight: 600;
+  outline: none; cursor: pointer;
   font-family: inherit;
-  appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23FF7A00' d='M6 8L0 0h12z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 20px center;
-  padding-right: 50px;
 }
-.calc-form select:hover { border-color: rgba(255,122,0,0.4); }
-.calc-form select:focus { border-color: var(--orange); box-shadow: 0 0 20px rgba(255,122,0,0.25); }
+.calc-form select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 20px rgba(255,122,0,0.25);
+}
 .calc-form select:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .calc-result {
-  padding: 40px;
-  border-radius: 20px;
+  padding: 40px; border-radius: 20px;
   background: linear-gradient(135deg, rgba(255,212,0,0.08), rgba(255,122,0,0.06));
   border: 1px dashed rgba(255,122,0,0.4);
-  text-align: center;
-  display: none;
+  text-align: center; display: none;
 }
-.calc-result.show { display: block; animation: fadeUp 0.4s ease; }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.calc-result.show { display: block; }
 .calc-result .cr-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--orange);
-  font-weight: 700;
-  margin-bottom: 12px;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--orange); font-weight: 700; margin-bottom: 12px;
 }
 .calc-result .cr-price {
-  font-size: 64px;
-  font-weight: 900;
-  letter-spacing: -3px;
-  line-height: 1;
+  font-size: 64px; font-weight: 900; letter-spacing: -3px; line-height: 1;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 16px;
 }
 .calc-result .cr-details {
-  color: var(--grey);
-  font-size: 16px;
-  margin-bottom: 24px;
+  color: var(--grey); font-size: 16px; margin-bottom: 24px;
 }
 .calc-result .cr-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
 }
 
-/* ============================================================
-   ПРОЦЕСС
-   ============================================================ */
-.process {
-  background: var(--dark);
-}
+/* ПРОЦЕСС */
+.process { background: var(--dark); }
 .process-track {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
   counter-reset: pstep;
-  position: relative;
 }
-.process-track::before {
-  content: '';
-  position: absolute;
-  top: 42px;
-  left: 5%;
-  right: 5%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--orange), transparent);
-  z-index: 0;
-}
-.process-step {
-  counter-increment: pstep;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding-top: 0;
-}
+.process-step { counter-increment: pstep; text-align: center; }
 .process-step .ps-circle {
-  width: 84px; height: 84px;
-  border-radius: 50%;
+  width: 84px; height: 84px; border-radius: 50%;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
   color: #050505;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; font-weight: 900;
   margin: 0 auto 24px;
-  box-shadow: 0 0 0 8px var(--dark), 0 0 30px rgba(255,122,0,0.5);
-  transition: transform 0.3s;
+  box-shadow: 0 0 30px rgba(255,122,0,0.5);
 }
-.process-step:hover .ps-circle { transform: scale(1.08); }
-.process-step h4 {
-  font-size: 19px;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-.process-step p {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.55;
-}
+.process-step h4 { font-size: 19px; font-weight: 800; margin-bottom: 10px; }
+.process-step p { font-size: 14px; color: var(--grey); line-height: 1.55; }
 
-/* ============================================================
-   ГАРАНТИЯ
-   ============================================================ */
-.warranty {
-  background: var(--black);
-}
+/* ГАРАНТИЯ */
 .warranty-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
 }
 .warranty-list {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  margin-top: 32px;
+  display: flex; flex-direction: column; gap: 26px; margin-top: 32px;
 }
-.warranty-item {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
+.warranty-item { display: flex; gap: 20px; align-items: flex-start; }
 .warranty-item .wi-check {
-  flex-shrink: 0;
-  width: 40px; height: 40px;
-  border-radius: 12px;
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #050505;
-  font-size: 20px;
-  font-weight: 900;
-  box-shadow: 0 8px 20px rgba(255,122,0,0.35);
+  display: flex; align-items: center; justify-content: center;
+  color: #050505; font-size: 20px; font-weight: 900;
 }
-.warranty-item h4 {
-  font-size: 17px;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-.warranty-item p {
-  color: var(--grey);
-  font-size: 14px;
-  line-height: 1.55;
-}
+.warranty-item h4 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+.warranty-item p { color: var(--grey); font-size: 14px; line-height: 1.55; }
 
 .warranty-visual {
-  position: relative;
+  display: flex; align-items: center; justify-content: center;
   aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .warranty-badge {
-  width: 240px; height: 240px;
-  border-radius: 50%;
+  width: 260px; height: 260px; border-radius: 50%;
   background: linear-gradient(135deg, rgba(255,212,0,0.15), rgba(255,122,0,0.15));
   border: 2px solid var(--orange);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
   text-align: center;
   box-shadow: 0 0 60px rgba(255,122,0,0.4), inset 0 0 60px rgba(255,122,0,0.15);
-  position: relative;
-}
-.warranty-badge::before,
-.warranty-badge::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255,122,0,0.3);
-  animation: ringPulse 3s ease-out infinite;
-}
-.warranty-badge::before { inset: -30px; animation-delay: 0s; }
-.warranty-badge::after  { inset: -60px; animation-delay: 1s; }
-@keyframes ringPulse {
-  0%   { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1.15); opacity: 0; }
 }
 .warranty-badge .wb-num {
-  font-size: 72px;
-  font-weight: 900;
-  letter-spacing: -3px;
-  line-height: 1;
+  font-size: 72px; font-weight: 900; letter-spacing: -3px; line-height: 1;
   background: linear-gradient(135deg, var(--yellow), var(--orange));
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .warranty-badge .wb-text {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--grey);
-  font-weight: 700;
-  margin-top: 8px;
+  font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--grey); font-weight: 700; margin-top: 8px;
 }
 
-/* ============================================================
-   КОМАНДА
-   ============================================================ */
-.team {
-  background: var(--dark);
-}
+/* КОМАНДА */
+.team { background: var(--dark); }
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
 }
 .master-card {
   background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
@@ -1013,4 +472,945 @@ section {
   border-radius: 24px;
   padding: 32px 24px;
   text-align: center;
- 
+  transition: all 0.3s;
+}
+.master-card:hover {
+  border-color: rgba(255,122,0,0.5);
+  transform: translateY(-6px);
+}
+.master-avatar {
+  width: 90px; height: 90px; border-radius: 50%;
+  margin: 0 auto 18px;
+  background: linear-gradient(135deg, var(--yellow), var(--orange));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; font-weight: 900; color: #050505;
+  box-shadow: 0 0 30px rgba(255,122,0,0.4);
+}
+.master-card h4 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+.master-card .role { font-size: 13px; color: var(--orange); margin-bottom: 12px; }
+.master-card .exp {
+  font-size: 13px; color: var(--grey);
+  padding-top: 12px; border-top: 1px solid var(--line);
+}
+
+/* ОТЗЫВЫ */
+.reviews { background: var(--black); }
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.review-card {
+  background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s;
+}
+.review-card:hover { border-color: rgba(255,122,0,0.4); }
+.review-stars { color: var(--yellow); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+.review-text {
+  font-size: 15px; color: var(--grey); line-height: 1.7; margin-bottom: 20px;
+}
+.review-author {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 20px; border-top: 1px solid var(--line);
+}
+.review-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow), var(--orange));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; color: #050505; font-size: 16px;
+}
+.review-name { font-size: 14px; font-weight: 700; }
+.review-source { font-size: 12px; color: var(--grey-dark); }
+
+/* FAQ */
+.faq-list { max-width: 900px; margin: 0 auto; }
+.faq-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.faq-item:hover { border-color: rgba(255,122,0,0.4); }
+.faq-item.open { border-color: var(--orange); background: rgba(255,122,0,0.04); }
+.faq-question {
+  padding: 24px 28px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+}
+.faq-question::after {
+  content: '+';
+  font-size: 28px;
+  color: var(--orange);
+  font-weight: 700;
+  transition: transform 0.3s;
+  line-height: 1;
+}
+.faq-item.open .faq-question::after {
+  content: '−';
+  transform: rotate(180deg);
+  color: var(--yellow);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 28px;
+  color: var(--grey);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.faq-item.open .faq-answer {
+  max-height: 400px;
+  padding: 0 28px 26px;
+}
+
+/* ФОРМА */
+.contact {
+  background: var(--dark);
+  padding: 110px 0;
+}
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: start;
+}
+.contact-info .h2 { margin-bottom: 20px; }
+.contact-items {
+  display: flex; flex-direction: column; gap: 24px; margin-top: 40px;
+}
+.contact-item {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 22px; border-radius: 18px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+}
+.contact-item .ci-icon {
+  flex-shrink: 0; width: 48px; height: 48px; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255,212,0,0.15), rgba(255,122,0,0.15));
+  border: 1px solid rgba(255,122,0,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.contact-item .ci-label {
+  font-size: 12px; color: var(--orange);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 6px; font-weight: 700;
+}
+.contact-item .ci-value {
+  font-size: 16px; color: var(--white); font-weight: 600;
+  line-height: 1.5;
+}
+.contact-item .ci-value a { color: var(--yellow); }
+
+.contact-form {
+  background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,122,0,0.3);
+  border-radius: 24px;
+  padding: 44px 40px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.contact-form h3 {
+  font-size: 26px; font-weight: 900; margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.contact-form .cf-sub {
+  font-size: 14px; color: var(--grey); margin-bottom: 28px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%; padding: 18px 20px; margin-bottom: 14px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: var(--white); font-size: 15px;
+  outline: none; font-family: inherit;
+  transition: all 0.25s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 16px rgba(255,122,0,0.3);
+  background: #0d0d0d;
+}
+.contact-form textarea { resize: vertical; min-height: 100px; }
+.contact-form button { width: 100%; margin-top: 10px; }
+
+/* ПОДВАЛ */
+footer {
+  background: #030303;
+  border-top: 1px solid var(--line);
+  padding: 70px 0 30px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+.footer-brand .brand { margin-bottom: 20px; }
+.footer-brand p {
+  color: var(--grey-dark); font-size: 14px; line-height: 1.7;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--orange); margin-bottom: 20px; font-weight: 800;
+}
+.footer-col a, .footer-col p {
+  display: block; color: var(--grey); font-size: 14px;
+  margin-bottom: 12px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--yellow); }
+
+.footer-bottom {
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px; flex-wrap: wrap;
+  color: var(--grey-dark); font-size: 13px;
+}
+
+/* ПЛАВАЮЩИЕ КНОПКИ */
+.float-buttons {
+  position: fixed; right: 24px; bottom: 24px; z-index: 100;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.float-btn {
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  transition: transform 0.2s;
+}
+.float-btn:hover { transform: scale(1.12); }
+.float-wa { background: var(--green); }
+.float-tg { background: var(--blue); }
+
+/* АДАПТИВ */
+@media (max-width: 1100px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { max-width: 500px; margin: 0 auto; }
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-track { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .warranty-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .calc-form { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .container { padding: 0 20px; }
+  section { padding: 70px 0; }
+  .nav-menu { display: none; }
+  .hero-stats { grid-template-columns: 1fr; gap: 20px; }
+  .numbers-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .process-track { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; }
+  .btn { width: 100%; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ШАПКА
+     ============================================================ -->
+<nav class="topnav" id="topnav">
+  <div class="container topnav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark">🔧</span>
+      <span class="brand-text">G-M <span>Service</span></span>
+    </a>
+    <div class="nav-menu">
+      <a href="#services">Услуги</a>
+      <a href="#calc">Калькулятор</a>
+      <a href="#process">Как работаем</a>
+      <a href="#warranty">Гарантия</a>
+      <a href="#team">Мастера</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-phone">
+      <a href="tel:+79531789070">+7 953 178-90-70</a>
+      <small>Ежедневно 11:00–20:00</small>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Работаем прямо сейчас · Северный пр. 75к1
+        </div>
+        <h1 class="h1">
+          Ремонт техники<br>
+          <span class="accent">за 20 минут</span><br>
+          с гарантией до года
+        </h1>
+        <p class="lead">
+          Федеральная сеть сервисных центров G-M Service. Ремонтируем смартфоны, ноутбуки, планшеты и технику Apple. Бесплатная диагностика, оригинальные запчасти, честные цены.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary btn-lg">Оставить заявку</a>
+          <a href="tel:+79531789070" class="btn btn-secondary btn-lg">📞 Позвонить</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="num">12</div>
+            <div class="label">лет на рынке<br>ремонта техники</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">47</div>
+            <div class="label">городов<br>присутствия сети</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">4.8</div>
+            <div class="label">рейтинг на<br>Яндекс.Картах</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-phone-mock">
+          <div class="hero-phone-screen">
+            <div class="ps-icon">⚡</div>
+            <div class="ps-text">Ремонт запущен<br>Осталось: 12 минут</div>
+            <div class="ps-bar"><div></div></div>
+          </div>
+        </div>
+        <div class="hero-card hero-card-1">
+          <div class="hc-icon">🛡️</div>
+          <div class="hc-title">Гарантия 12 мес</div>
+          <div class="hc-sub">на работу и детали</div>
+        </div>
+        <div class="hero-card hero-card-2">
+          <div class="hc-icon">⚡</div>
+          <div class="hc-title">20 минут</div>
+          <div class="hc-sub">средний ремонт</div>
+        </div>
+        <div class="hero-card hero-card-3">
+          <div class="hc-icon">✅</div>
+          <div class="hc-title">Бесплатная диагностика</div>
+          <div class="hc-sub">даже при отказе от ремонта</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ЛЕНТА БРЕНДОВ
+     ============================================================ -->
+<div class="brands-strip">
+  <div class="brands-track">
+    <div class="brand-logo"> Apple</div>
+    <div class="brand-logo">Samsung</div>
+    <div class="brand-logo">Xiaomi</div>
+    <div class="brand-logo">Huawei</div>
+    <div class="brand-logo">ASUS</div>
+    <div class="brand-logo">Lenovo</div>
+    <div class="brand-logo">HP</div>
+    <div class="brand-logo">Dell</div>
+    <div class="brand-logo">Acer</div>
+    <div class="brand-logo">MSI</div>
+    <div class="brand-logo"> Apple</div>
+    <div class="brand-logo">Samsung</div>
+    <div class="brand-logo">Xiaomi</div>
+    <div class="brand-logo">Huawei</div>
+    <div class="brand-logo">ASUS</div>
+    <div class="brand-logo">Lenovo</div>
+    <div class="brand-logo">HP</div>
+    <div class="brand-logo">Dell</div>
+    <div class="brand-logo">Acer</div>
+    <div class="brand-logo">MSI</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ЦИФРЫ
+     ============================================================ -->
+<section class="numbers">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="section-label">G-M Service в цифрах</div>
+      <h2 class="h2">Масштаб, которому <span class="accent">доверяют</span></h2>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="big">1.2<span>млн</span></div>
+        <div class="desc">устройств отремонтировано за всё время работы сети</div>
+      </div>
+      <div class="number-card">
+        <div class="big">47</div>
+        <div class="desc">городов России, где открыты сервисные центры</div>
+      </div>
+      <div class="number-card">
+        <div class="big">320<span>+</span></div>
+        <div class="desc">сертифицированных мастеров в штате компании</div>
+      </div>
+      <div class="number-card">
+        <div class="big">98<span>%</span></div>
+        <div class="desc">клиентов возвращаются или рекомендуют нас друзьям</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     УСЛУГИ
+     ============================================================ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="section-label">Что мы ремонтируем</div>
+        <h2 class="h2">Полный спектр <span class="accent">работ</span></h2>
+      </div>
+      <a href="#contact" class="btn btn-secondary">Все услуги →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="sc-icon">📱</div>
+        <h3>Смартфоны</h3>
+        <p>Замена экранов, аккумуляторов, разъёмов зарядки. Ремонт после залития и падений. iPhone, Samsung, Xiaomi и другие.</p>
+        <div class="sc-price">от <strong>1 200 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">💻</div>
+        <h3>Ноутбуки</h3>
+        <p>Замена матриц, клавиатур, чистка от пыли, замена термопасты. Ремонт материнских плат любой сложности.</p>
+        <div class="sc-price">от <strong>1 800 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">🍎</div>
+        <h3>Техника Apple</h3>
+        <p>MacBook, iPhone, iPad, Apple Watch. Оригинальные комплектующие и профессиональный инструмент.</p>
+        <div class="sc-price">от <strong>3 500 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">💧</div>
+        <h3>После залития</h3>
+        <p>Ультразвуковая чистка платы, восстановление цепей питания, замена повреждённых компонентов.</p>
+        <div class="sc-price">от <strong>2 500 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">🔋</div>
+        <h3>Аккумуляторы</h3>
+        <p>Замена батарей с гарантией. Восстановление автономности за 15–30 минут при вас.</p>
+        <div class="sc-price">от <strong>1 500 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">⚙️</div>
+        <h3>Материнские платы</h3>
+        <p>Компонентный ремонт: замена чипов, реболлинг, восстановление дорожек. Есть паяльная станция.</p>
+        <div class="sc-price">от <strong>4 000 ₽</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     КАЛЬКУЛЯТОР
+     ============================================================ -->
+<section class="calc" id="calc">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:50px;">
+      <div class="section-label">Онлайн-расчёт</div>
+      <h2 class="h2">Узнайте стоимость <span class="accent">за 10 секунд</span></h2>
+      <p class="lead" style="max-width:600px; margin:0 auto;">
+        Выберите устройство, модель и тип поломки — мы покажем цену и время работы
+      </p>
+    </div>
+    <div class="calc-shell">
+      <div class="calc-form">
+        <select id="calcDevice">
+          <option value="">— Тип устройства —</option>
+          <option value="phone">📱 Смартфон</option>
+          <option value="laptop">💻 Ноутбук</option>
+          <option value="tablet">📲 Планшет</option>
+        </select>
+        <select id="calcModel" disabled>
+          <option value="">— Модель —</option>
+        </select>
+        <select id="calcIssue" disabled>
+          <option value="">— Тип поломки —</option>
+        </select>
+      </div>
+      <div class="calc-result" id="calcResult">
+        <div class="cr-label">Стоимость ремонта</div>
+        <div class="cr-price" id="calcPrice">—</div>
+        <div class="cr-details" id="calcDetails"></div>
+        <div class="cr-actions">
+          <a href="#contact" class="btn btn-primary">Записаться на ремонт</a>
+          <a href="tel:+79531789070" class="btn btn-secondary">Позвонить мастеру</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ПРОЦЕСС
+     ============================================================ -->
+<section class="process" id="process">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="section-label">Как мы работаем</div>
+      <h2 class="h2">4 шага до <span class="accent">готового устройства</span></h2>
+    </div>
+    <div class="process-track">
+      <div class="process-step">
+        <div class="ps-circle">1</div>
+        <h4>Заявка</h4>
+        <p>Оставляете заявку на сайте или звоните. Отвечаем в течение 5 минут.</p>
+      </div>
+      <div class="process-step">
+        <div class="ps-circle">2</div>
+        <h4>Диагностика</h4>
+        <p>Бесплатно находим причину поломки и согласовываем точную цену.</p>
+      </div>
+      <div class="process-step">
+        <div class="ps-circle">3</div>
+        <h4>Ремонт</h4>
+        <p>Работаем при вас или забираем устройство. Большинство ремонтов — 20–40 минут.</p>
+      </div>
+      <div class="process-step">
+        <div class="ps-circle">4</div>
+        <h4>Гарантия</h4>
+        <p>Выдаём устройство, квитанцию и гарантию до 12 месяцев на работу и детали.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ГАРАНТИЯ
+     ============================================================ -->
+<section class="warranty" id="warranty">
+  <div class="container">
+    <div class="warranty-grid">
+      <div>
+        <div class="section-label">Гарантия и качество</div>
+        <h2 class="h2">Мы отвечаем за <span class="accent">каждый ремонт</span></h2>
+        <p class="lead">G-M Service работает по стандартам федеральной сети. Все мастера сертифицированы, запчасти — оригинальные или сертифицированные аналоги.</p>
+        <div class="warranty-list">
+          <div class="warranty-item">
+            <div class="wi-check">✓</div>
+            <div>
+              <h4>До 12 месяцев гарантии</h4>
+              <p>На работу и установленные детали. Если что-то пойдёт не так — переделаем бесплатно.</p>
+            </div>
+          </div>
+          <div class="warranty-item">
+            <div class="wi-check">✓</div>
+            <div>
+              <h4>Оригинальные запчасти</h4>
+              <p>Работаем с официальными поставщиками. Все детали сертифицированы и имеют гарантию производителя.</p>
+            </div>
+          </div>
+          <div class="warranty-item">
+            <div class="wi-check">✓</div>
+            <div>
+              <h4>Бесплатная диагностика</h4>
+              <p>Даже если вы откажетесь от ремонта — диагностика ничего не будет стоить.</p>
+            </div>
+          </div>
+          <div class="warranty-item">
+            <div class="wi-check">✓</div>
+            <div>
+              <h4>Страховка устройства</h4>
+              <p>Все устройства застрахованы на время нахождения в сервисе. Отвечаем за сохранность.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="warranty-visual">
+        <div class="warranty-badge">
+          <div class="wb-num">365</div>
+          <div class="wb-text">дней гарантии</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     КОМАНДА
+     ============================================================ -->
+<section class="team" id="team">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="section-label">Наши мастера</div>
+      <h2 class="h2">Люди, которые <span class="accent">чинят технику</span></h2>
+      <p class="lead" style="max-width:600px; margin:0 auto;">
+        Каждый мастер G-M Service проходит обучение и сертификацию. Средний опыт — более 5 лет.
+      </p>
+    </div>
+    <div class="team-grid">
+      <div class="master-card">
+        <div class="master-avatar">А</div>
+        <h4>Алексей Морозов</h4>
+        <div class="role">Главный инженер</div>
+        <div class="exp">12 лет опыта · Apple Certified</div>
+      </div>
+      <div class="master-card">
+        <div class="master-avatar">Д</div>
+        <h4>Дмитрий Волков</h4>
+        <div class="role">Мастер по смартфонам</div>
+        <div class="exp">8 лет опыта · Samsung Specialist</div>
+      </div>
+      <div class="master-card">
+        <div class="master-avatar">Е</div>
+        <h4>Екатерина Соколова</h4>
+        <div class="role">Мастер по ноутбукам</div>
+        <div class="exp">6 лет опыта · Lenovo Certified</div>
+      </div>
+      <div class="master-card">
+        <div class="master-avatar">И</div>
+        <h4>Игорь Петров</h4>
+        <div class="role">Инженер по платам</div>
+        <div class="exp">10 лет опыта · Microsoldering Expert</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ОТЗЫВЫ
+     ============================================================ -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="section-label">Отзывы клиентов</div>
+      <h2 class="h2">Нам доверяют <span class="accent">тысячи людей</span></h2>
+      <p class="lead">Рейтинг 4.8 на Яндекс.Картах · Более 1200 отзывов</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Разбил экран iPhone 13, обратился в G-M Service. Сделали за 30 минут при мне. Качество отличное, цена ниже, чем у официалов. Рекомендую!»</p>
+        <div class="review-author">
+          <div class="review-avatar">М</div>
+          <div>
+            <div class="review-name">Михаил К.</div>
+            <div class="review-source">Яндекс.Карты</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Залила ноутбук кофе. Думала — всё, конец. Ребята из G-M сделали ультразвуковую чистку, заменили пару чипов. Работает как новый!»</p>
+        <div class="review-author">
+          <div class="review-avatar">А</div>
+          <div>
+            <div class="review-name">Анна В.</div>
+            <div class="review-source">Яндекс.Карты</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">«Замена аккумулятора на MacBook Air. Всё сделали за час, дали гарантию год. Цена адекватная, мастера вежливые. Приду ещё.»</p>
+        <div class="review-author">
+          <div class="review-avatar">С</div>
+          <div>
+            <div class="review-name">Сергей П.</div>
+            <div class="review-source">Яндекс.Карты</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:50px;">
+      <a href="https://yandex.ru/maps/org/g_m_service/243411899561/" target="_blank" rel="noopener" class="btn btn-secondary">
+        Читать все отзывы на Яндекс.Картах →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <div class="section-label">Частые вопросы</div>
+      <h2 class="h2">Отвечаем на <span class="accent">важные вопросы</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">Удалятся ли мои данные при ремонте?</div>
+        <div class="faq-answer">Нет. Мы не трогаем ваши данные без необходимости. Если ремонт требует сброса настроек, мастер предупредит заранее и попросит письменное разрешение. Все данные остаются в безопасности.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Сколько длится бесплатная диагностика?</div>
+        <div class="faq-answer">Обычно 15–30 минут. В сложных случаях (залитие, проблема с материнской платой) — до 1 часа. Диагностика всегда бесплатна, даже если вы откажетесь от ремонта.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Что делать, если в телефон попала вода?</div>
+        <div class="faq-answer">Первое — не включайте устройство. Второе — не трясите и не грейте феном. Третье — как можно скорее привезите к нам. Чем быстрее устройство попадёт к мастеру, тем выше шанс полностью восстановить его.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Какую гарантию вы даёте?</div>
+        <div class="faq-answer">На работу — от 3 месяцев, на запчасти — до 12 месяцев в зависимости от детали. Гарантия подтверждается квитанцией. Если в течение гарантийного срока возникнет проблема — устраним бесплатно.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Можно ли отремонтировать при мне?</div>
+        <div class="faq-answer">Да. Простые ремонты (замена экрана, аккумулятора, разъёма зарядки) делаем при вас за 20–40 минут. Сложные случаи требуют оставить устройство на диагностику — обычно 1–2 дня.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Есть ли у вас доставка устройства в сервис?</div>
+        <div class="faq-answer">Да, в пределах Санкт-Петербурга работает бесплатный курьер. Оставьте заявку — курьер заберёт устройство и вернёт после ремонта в удобное время.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     КОНТАКТЫ + ФОРМА
+     ============================================================ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Контакты</div>
+        <h2 class="h2">Приходите — <span class="accent">мы рядом</span></h2>
+        <p class="lead">Наш сервисный центр находится в 3 минутах от метро Академическая. Заходите без записи или оставьте заявку — перезвоним за 5 минут.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Адрес</div>
+              <div class="ci-value">Северный проспект 75к1,<br>метро Академическая</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Телефон</div>
+              <div class="ci-value"><a href="tel:+79531789070">+7 953 178-90-70</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">🕐</div>
+            <div>
+              <div class="ci-label">Режим работы</div>
+              <div class="ci-value">Ежедневно с 11:00 до 20:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Оставить заявку</h3>
+        <p class="cf-sub">Перезвоним в течение 5 минут и ответим на все вопросы</p>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="name" placeholder="Ваше имя" required>
+          <input type="tel" name="phone" placeholder="Номер телефона" required>
+          <textarea name="message" placeholder="Опишите проблему (необязательно)"></textarea>
+          <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ПОДВАЛ
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <span class="brand-mark">🔧</span>
+          <span class="brand-text">G-M <span>Service</span></span>
+        </a>
+        <p>Федеральная сеть сервисных центров по ремонту цифровой техники. Работаем с 2013 года.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Услуги</h4>
+        <a href="#services">Ремонт смартфонов</a>
+        <a href="#services">Ремонт ноутбуков</a>
+        <a href="#services">Ремонт Apple</a>
+        <a href="#services">После залития</a>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <a href="#team">О нас</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#warranty">Гарантия</a>
+        <a href="#contact">Контакты</a>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="tel:+79531789070">+7 953 178-90-70</a>
+        <p>Северный пр. 75к1</p>
+        <p>Ежедневно 11:00–20:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 G-M Service. Все права защищены.</div>
+      <div>Санкт-Петербург · метро Академическая</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     ПЛАВАЮЩИЕ КНОПКИ
+     ============================================================ -->
+<div class="float-buttons">
+  <a href="https://wa.me/79531789070" class="float-btn float-wa" target="_blank" title="WhatsApp">💬</a>
+  <a href="https://t.me/+79531789070" class="float-btn float-tg" target="_blank" title="Telegram">✈️</a>
+</div>
+
+<script>
+/* ============================================================
+   ШАПКА — эффект при скролле
+   ============================================================ */
+const topnav = document.getElementById('topnav');
+window.addEventListener('scroll', () => {
+  topnav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ============================================================
+   КАЛЬКУЛЯТОР
+   ============================================================ */
+const calcData = {
+  phone: {
+    models: {
+      'iphone-13': { name: 'iPhone 13' },
+      'iphone-14': { name: 'iPhone 14' },
+      'samsung-s22': { name: 'Samsung Galaxy S22' },
+      'xiaomi-redmi': { name: 'Xiaomi Redmi Note' }
+    },
+    issues: {
+      screen:   { name: 'Замена экрана',        prices: { 'iphone-13': 8500, 'iphone-14': 11000, 'samsung-s22': 7500, 'xiaomi-redmi': 3200 } },
+      battery:  { name: 'Замена аккумулятора',   prices: { 'iphone-13': 3500, 'iphone-14': 4000,  'samsung-s22': 3000, 'xiaomi-redmi': 1500 } },
+      charge:   { name: 'Ремонт разъёма',        prices: { 'iphone-13': 2800, 'iphone-14': 3000,  'samsung-s22': 2500, 'xiaomi-redmi': 1200 } },
+      water:    { name: 'Чистка после залития',  prices: { 'iphone-13': 4500, 'iphone-14': 5000,  'samsung-s22': 4000, 'xiaomi-redmi': 2500 } }
+    }
+  },
+  laptop: {
+    models: {
+      'macbook-air': { name: 'MacBook Air' },
+      'macbook-pro': { name: 'MacBook Pro' },
+      'lenovo': { name: 'Lenovo IdeaPad' },
+      'asus': { name: 'ASUS VivoBook' }
+    },
+    issues: {
+      screen:   { name: 'Замена матрицы',        prices: { 'macbook-air': 15000, 'macbook-pro': 22000, 'lenovo': 6500, 'asus': 5800 } },
+      battery:  { name: 'Замена аккумулятора',   prices: { 'macbook-air': 6000,  'macbook-pro': 7500,  'lenovo': 3500, 'asus': 3200 } },
+      keyboard: { name: 'Замена клавиатуры',     prices: { 'macbook-air': 5500,  'macbook-pro': 7000,  'lenovo': 2800, 'asus': 2500 } },
+      overheat: { name: 'Чистка + термопаста',   prices: { 'macbook-air': 3500,  'macbook-pro': 4000,  'lenovo': 2000, 'asus': 1800 } }
+    }
+  },
+  tablet: {
+    models: {
+      'ipad-air': { name: 'iPad Air' },
+      'ipad-pro': { name: 'iPad Pro' },
+      'samsung-tab': { name: 'Samsung Galaxy Tab' },
+      'xiaomi-pad': { name: 'Xiaomi Pad' }
+    },
+    issues: {
+      screen:  { name: 'Замена экрана',   prices: { 'ipad-air': 9000, 'ipad-pro': 14000, 'samsung-tab': 7000, 'xiaomi-pad': 5500 } },
+      battery: { name: 'Замена батареи',  prices: { 'ipad-air': 4500, 'ipad-pro': 5500,  'samsung-tab': 4000, 'xiaomi-pad': 3000 } },
+      charge:  { name: 'Ремонт разъёма',  prices: { 'ipad-air': 3500, 'ipad-pro': 4000,  'samsung-tab': 3000, 'xiaomi-pad': 2500 } }
+    }
+  }
+};
+
+const calcDevice = document.getElementById('calcDevice');
+const calcModel = document.getElementById('calcModel');
+const calcIssue = document.getElementById('calcIssue');
+const calcResult = document.getElementById('calcResult');
+const calcPrice = document.getElementById('calcPrice');
+const calcDetails = document.getElementById('calcDetails');
+
+calcDevice.addEventListener('change', function() {
+  const dev = this.value;
+  calcModel.innerHTML = '<option value="">— Модель —</option>';
+  calcIssue.innerHTML = '<option value="">— Тип поломки —</option>';
+  calcResult.classList.remove('show');
+  calcModel.disabled = !dev;
+  calcIssue.disabled = true;
+
+  if (!dev) return;
+
+  const models = calcData[dev].models;
+  for (const key in models) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = models[key].name;
+    calcModel.appendChild(opt);
+  }
+});
+
+calcModel.addEventListener('change', function() {
+  const dev = calcDevice.value;
+  const model = this.value;
+  calcIssue.innerHTML = '<option value="">— Тип поломки —</option>';
+  calcResult.classList.remove('show');
+  calcIssue.disabled = !model;
+
+  if (!model) return;
+
+  const issues = calcData[dev].issues;
+  for (const key in issues) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = issues[key].name;
+    calcIssue.appendChild(opt);
+  }
+});
+
+calcIssue.addEventListener('change', function() {
+  const dev = calcDevice.value;
+  const model = calcModel.value;
+  const issue = this.value;
+
+  if (!issue) {
+    calcResult.classList.remove('show');
+    return;
+  }
+
+  const price = calcData[dev].issues[issue].prices[model];
+  const issueName = calcData[dev].issues[issue].name;
+  const modelName = calcData[dev].models[model].name;
+
+  calcPrice.textContent = price.toLocaleString('ru-RU') + ' ₽';
+  calcDetails.textContent = modelName + ' · ' + issueName + ' · Время: 30–40 минут';
+  calcResult.classList.add('show');
+});
+
+/* ============================================================
+   FAQ АККОРДЕОН
+   ============================================================ */
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', function() {
+    const item = this.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>
