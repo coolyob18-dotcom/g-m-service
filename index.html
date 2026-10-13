@@ -3,320 +3,1099 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-M Service — Ремонт телефонов и ноутбуков на Академической</title>
+    <title>G-M Service — Федеральная сеть сервисных центров и комплектующих</title>
     <style>
-        /* Базовые стили и живой переливающийся фон */
+        /* ==========================================================================
+           1. СИСТЕМНЫЕ СТИЛИ, СЕТКА И АНИМИРОВАННЫЙ ГРАДИЕНТ (МАСШТАБ СЕТИ)
+           ========================================================================== */
+        :root {
+            --bg-pure: #050505;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-light-gray: #1f1f1f;
+            --accent-orange: #ff9900;
+            --accent-yellow: #ffcc00;
+            --text-pure: #ffffff;
+            --text-muted: #aaaaaa;
+            --text-dark: #0d0d0d;
+            --border-color: #2a2a2a;
+            --neon-shadow: rgba(255, 153, 0, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #ffffff;
-            /* Тёмный массивный градиент с переливами чёрного, серого, оранжевого и жёлтого */
-            background: linear-gradient(-45deg, #0a0a0a, #141414, #241103, #1c1401);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-pure);
+            background: linear-gradient(-45deg, #050505, #121212, #241103, #171101, #0a0a0a);
+            background-size: 500% 500%;
+            animation: grandGradient 18s ease infinite;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        @keyframes gradientBG {
+        @keyframes grandGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Крупная Шапка сайта (Header) */
-        .header {
+        /* Утилиты контейнеров */
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Стилизация полосы прокрутки */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-pure);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-light-gray);
+            border: 2px solid var(--bg-pure);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-orange);
+        }
+
+        /* ==========================================================================
+           2. ВЕРХНЯЯ СИСТЕМНАЯ ПАНЕЛЬ И НАВИГАЦИОННОЕ МЕНЮ (MEGA MENU BAR)
+           ========================================================================== */
+        .top-bar {
+            background-color: var(--bg-pure);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 10px 0;
+        }
+
+        .top-bar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 5%;
-            background-color: rgba(20, 20, 20, 0.95);
-            border-bottom: 4px solid #ff9900;
-            backdrop-filter: blur(10px);
+        }
+
+        .top-meta span {
+            margin-right: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-links a {
+            margin-left: 20px;
+        }
+        .top-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .main-header {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 4px solid var(--accent-orange);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 1000;
-        }
-
-        .logo {
-            font-size: 32px;
-            font-weight: 900;
-            color: #ffcc00;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-        .logo span {
-            color: #ff9900;
-        }
-
-        .header-contacts {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .phone {
-            font-size: 28px;
-            font-weight: 800;
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .phone:hover {
-            color: #ffcc00;
-        }
-
-        .support-buttons {
-            margin-top: 10px;
-        }
-        .btn-link {
-            font-size: 15px;
-            color: #0d0d0d;
-            background-color: #ff9900;
-            padding: 8px 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-left: 10px;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-        .btn-link:hover {
-            background-color: #ffcc00;
-            transform: translateY(-2px);
-        }
-
-        /* Огромный Главный экран (Hero) */
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .hero h1 {
-            font-size: 64px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            line-height: 1.2;
-            font-weight: 900;
-        }
-        .hero h1 span {
-            color: #ffcc00;
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.2);
-        }
-        .hero p {
-            font-size: 24px;
-            color: #cccccc;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        /* Крупная кнопка действия */
-        .btn-main {
-            display: inline-block;
-            background: linear-gradient(90deg, #ff9900, #ffcc00);
-            color: #0d0d0d;
-            padding: 18px 45px;
-            font-size: 20px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(255, 153, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.5);
-        }
-
-        /* СЕКЦИЯ: Цены и услуги */
-        .services-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-        .section-title {
-            font-size: 40px;
-            text-align: center;
-            color: #ffcc00;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .service-card {
-            background: rgba(30, 30, 30, 0.7);
-            border: 2px solid #333;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .service-card:hover {
-            border-color: #ff9900;
-            transform: translateY(-5px);
-        }
-        .service-icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-        .service-card h3 {
-            font-size: 22px;
-            margin: 10px 0;
-        }
-        .service-price {
-            font-size: 26px;
-            color: #ffcc00;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-        .price-note {
-            font-size: 13px;
-            color: #ff9900;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
-        /* СЕКЦИЯ: Форма заявки (Служба поддержки) */
-        .form-section {
-            background: rgba(20, 20, 20, 0.8);
-            border-top: 3px solid #ff9900;
-            border-bottom: 3px solid #ff9900;
-            padding: 80px 20px;
-            text-align: center;
-        }
-        .repair-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .repair-form input, .repair-form select {
-            padding: 15px;
-            font-size: 18px;
-            border-radius: 6px;
-            border: 2px solid #444;
-            background: #111;
-            color: #fff;
-        }
-        .repair-form input:focus {
-            border-color: #ffcc00;
-            outline: none;
-        }
-        .btn-submit {
-            background: #ff9900;
-            color: #000;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-        .btn-submit:hover {
-            background: #ffcc00;
-        }
-
-        /* СЕКЦИЯ: Контакты и Огромная Карта */
-        .contacts-section {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 20px;
-            display: flex;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-        .contacts-info {
-            flex: 1;
-            min-width: 350px;
-        }
-        .contacts-info h2 {
-            font-size: 36px;
-            color: #ff9900;
-            margin-top: 0;
-        }
-        .address-text {
-            font-size: 22px;
-            line-height: 1.6;
-            margin: 20px 0;
-        }
-        .metro-badge {
-            display: inline-block;
-            background: #e61c1c;
-            color: #fff;
-            padding: 5px 12px;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 5px;
-            margin-bottom: 30px;
-        }
-        .map-box {
-            flex: 1.5;
-            min-width: 450px;
-            height: 450px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 3px solid #ffcc00;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Адаптивность под мобилки */
-        @media (max-width: 768px) {
-            .header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
-            .header-contacts { align-items: center; }
-            .phone { font-size: 24px; }
-            .hero h1 { font-size: 38px; }
-            .hero p { font-size: 18px; }
-            .contacts-section { flex-direction: column; }
-            .map-box { min-width: 100%; height: 350px; }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
-    </style>
-</head>
-<body>
 
-    <!-- Шапка сайта -->
-    <header class="header">
-        <a href="#" class="logo">G-M <span>Service</span></a>
-        <div class="header-contacts">
-            <a href="tel:+79531789070" class="phone">+7 (953) 178-90-70</a>
-            <div class="support-buttons">
-                <a href="https://wa.me" target="_blank" class="btn-link">WhatsApp-поддержка</a>
-                <a href="https://t.me" target="_blank" class="btn-link">Telegram-мастер</a>
-            </div>
-        </div>
-    </header>
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    <!-- Главный блок -->
-    <section class="hero">
-        <h1>Ремонт телефонов и ноутбуков <br><span>G-M Service в СПБ</span></h1>
-        <p>Профессиональный ремонт цифровой техники на метро Академическая. Официальная гарантия, точная диагностика и ремонт при вас от 20 минут.</p>
-        <a href="#request" class="btn-main">Записаться на ремонт</a>
-    </section>
+        .logo-text {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+        }
 
-    <!-- Блок Услуг и Цен -->
-    <section class="services-section">
-        <h2 class="section-title">Наши услуги и цены</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🔍</div>
-                <h3>Полная диагностика</h3>
-                <p>Проверка устройства на программные ошибки и аппаратные неисправности.</p>
-                <div class="service-price">500 ₽</div>
-                <div class="price-note">БЕСПЛАТНО ПРИ РЕМОНТЕ</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Замена дисплея / стекла</h3>
-                <p>Установка оригинальных экранов на любые модели телефонов.</p>
-                <div class="service-price">от 1 000 ₽</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💧</div>
+        .logo-text span {
+            color: var(--accent-orange);
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item a {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-item a:hover {
+            color: var(--accent-yellow);
+            border-bottom-color: var(--accent-yellow);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .header-phone-block {
+            text-align: right;
+        }
+
+        .header-phone {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-pure);
+        }
+        .header-phone:hover {
+            color: var(--accent-yellow);
+        }
+
+        .header-schedule {
+            font-size: 12px;
+            color: var(--accent-orange);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .header-support-pills {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+            justify-content: flex-end;
+        }
+
+        .pill {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        .pill-tg { background-color: #26a5e4; color: white; }
+        .pill-wa { background-color: #25d366; color: white; }
+        .pill:hover { transform: translateY(-1px); filter: brightness(1.1); }
+
+        /* ==========================================================================
+           3. ТЕХНОЛОГИЧНЫЙ ГЛАВНЫЙ ЭКРАН (HERO BANNER)
+           ========================================================================== */
+        .hero-section {
+            padding: 140px 0 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 68px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-yellow);
+            position: relative;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 45px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-grand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 45px;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 6px;
+            box-shadow: 0 5px 20px var(--neon-shadow);
+        }
+
+        .btn-primary-glow {
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+            color: var(--text-dark);
+        }
+        .btn-primary-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 153, 0, 0.5);
+        }
+
+        .btn-secondary-outline {
+            border: 2px solid var(--border-color);
+            background: rgba(255,255,255,0.03);
+        }
+        .btn-secondary-outline:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .hero-stats-badge {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-box .num {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--accent-orange);
+            display: block;
+        }
+        .stat-box .lbl {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* ==========================================================================
+           4. ПОРТАТИВНЫЙ ПОДБОР ПО МОДЕЛИ (ИНТЕРАКТИВНЫЙ БАР)
+           ========================================================================== */
+        .model-selector-bar {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 35px 0;
+        }
+
+        .selector-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .selector-title {
+            font-size: 18px;
+            max-width: 250px;
+            line-height: 1.3;
+        }
+        .selector-title span { color: var(--accent-yellow); }
+
+        .select-custom {
+            flex: 1;
+            min-width: 200px;
+background: var(--bg-pure);
+border: 1px solid var(--border-color);
+color: white;
+padding: 15px;
+font-size: 16px;
+border-radius: 6px;
+appearance: none;
+cursor: pointer;
+}
+.select-custom:focus {
+border-color: var(--accent-orange);
+outline: none;
+}
+.btn-select-go {
+background-color: var(--accent-orange);
+color: var(--text-dark);
+padding: 15px 35px;
+font-weight: 700;
+border-radius: 6px;
+text-transform: uppercase;
+}
+.btn-select-go:hover { background-color: var(--accent-yellow); }
+/* ==========================================================================
+5. КАТАЛОГ СЕТЕВЫХ БРЕНДОВ И ПРОИЗВОДИТЕЛЕЙ (МАТРИЦА СТИЛЕЙ)
+========================================================================== */
+.brands-section {
+padding: 100px 0;
+}
+.section-header-centered {
+text-align: center;
+max-width: 800px;
+margin: 0 auto 60px auto;
+}
+.section-header-centered h2 {
+font-size: 42px;
+margin-bottom: 15px;
+}
+.section-header-centered h2 span { color: var(--accent-orange); }
+.section-header-centered p {
+font-size: 18px;
+color: var(--text-muted);
+}
+.brands-grid {
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+gap: 20px;
+}
+.brand-tile {
+background: rgba(20,20,20,0.5);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+padding: 25px;
+text-align: center;
+font-weight: 700;
+font-size: 18px;
+color: var(--text-muted);
+}
+.brand-tile:hover {
+border-color: var(--accent-yellow);
+color: var(--text-pure);
+background: var(--bg-card);
+transform: scale(1.03);
+}
+/* ==========================================================================
+6. ИНТЕРАКТИВНАЯ ТАБЛИЦА ЦЕН И КАТЕГОРИЙ (ПРАЙС-ЛИСТ МАСШТАБА МАССТЕРСКОЙ)
+========================================================================== */
+.pricing-section {
+padding: 100px 0;
+background: rgba(10,10,10,0.4);
+}
+.pricing-layout {
+display: grid;
+grid-template-columns: 300px 1fr;
+gap: 40px;
+}
+.price-categories-vertical {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.cat-btn-vertical {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+padding: 20px;
+text-align: left;
+color: var(--text-muted);
+font-weight: 700;
+font-size: 16px;
+border-radius: 6px;
+cursor: pointer;
+}
+.cat-btn-vertical.active, .cat-btn-vertical:hover {
+background: linear-gradient(90deg, var(--bg-light-gray), var(--bg-card));
+border-left: 4px solid var(--accent-orange);
+color: var(--text-pure);
+}
+.price-table-container {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+padding: 40px;
+}
+.price-table-title-box {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 2px solid var(--border-color);
+padding-bottom: 20px;
+margin-bottom: 20px;
+}
+.table-row-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 18px 0;
+border-bottom: 1px solid var(--border-color);
+}
+.table-row-item:last-child { border-bottom: none; }
+.service-info-col h4 {
+font-size: 18px;
+color: var(--text-pure);
+text-transform: none;
+}
+.service-info-col p {
+font-size: 14px;
+color: var(--text-muted);
+margin: 5px 0 0 0;
+}
+.service-pricing-col {
+text-align: right;
+display: flex;
+align-items: center;
+gap: 30px;
+}
+.price-value-tag {
+font-size: 22px;
+font-weight: 800;
+color: var(--accent-yellow);
+}
+.btn-table-order {
+background: var(--bg-light-gray);
+border: 1px solid var(--border-color);
+padding: 10px 20px;
+font-size: 14px;
+font-weight: 700;
+border-radius: 4px;
+}
+.btn-table-order:hover {
+background: var(--accent-orange);
+color: var(--text-dark);
+border-color: var(--accent-orange);
+}
+/* ==========================================================================
+7. ИНЖЕНЕРНЫЕ СЕКЦИИ И ТЕХПРОЦЕССЫ (ЗОНА ПРЕИМУЩЕСТВ)
+========================================================================== */
+.process-section {
+padding: 100px 0;
+}
+.process-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 30px;
+}
+.process-card {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+padding: 40px 30px;
+border-radius: 8px;
+position: relative;
+}
+.process-card .step-num {
+font-size: 70px;
+font-weight: 900;
+color: rgba(255, 153, 0, 0.07);
+position: absolute;
+top: 10px;
+right: 20px;
+line-height: 1;
+}
+.process-card h3 {
+font-size: 20px;
+color: var(--accent-orange);
+margin-bottom: 15px;
+position: relative;
+z-index: 2;
+}
+.process-card p {
+font-size: 15px;
+color: var(--text-muted);
+line-height: 1.5;
+margin: 0;
+}
+/* ==========================================================================
+8. ЦЕНТРАЛИЗОВАННЫЙ МОДУЛЬ СЛУЖБЫ ПОДДЕРЖКИ И ЗАЯВОК (LEAD GEN)
+========================================================================== */
+.lead-capture-section {
+padding: 100px 0;
+background: linear-gradient(180deg, transparent, rgba(20,20,20,0.6), transparent);
+}
+.lead-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+}
+.lead-info-text h2 {
+font-size: 44px;
+margin-bottom: 25px;
+}
+.lead-info-text h2 span { color: var(--accent-yellow); }
+.lead-info-text p {
+font-size: 18px;
+line-height: 1.6;
+color: var(--text-muted);
+margin-bottom: 40px;
+}
+.benefit-inline-list {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.benefit-inline-item {
+display: flex;
+gap: 15px;
+align-items: flex-start;
+}
+.benefit-inline-item .icon-check {
+background: rgba(255, 204, 0, 0.1);
+color: var(--accent-yellow);
+padding: 8px;
+border-radius: 5px;
+font-weight: bold;
+}
+.benefit-inline-item h4 {
+font-size: 18px;
+margin-bottom: 4px;
+text-transform: none;
+}
+.benefit-inline-item p {
+font-size: 14px;
+margin: 0;
+color: var(--text-muted);
+}
+.giant-form-card {
+background: var(--bg-card);
+border: 2px solid var(--border-color);
+padding: 50px;
+border-radius: 12px;
+box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+.giant-form-card h3 {
+font-size: 24px;
+margin-bottom: 30px;
+text-align: center;
+}
+.massive-form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.input-group-field {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+.input-group-field label {
+font-size: 14px;
+font-weight: 700;
+color: var(--text-muted);
+text-transform: uppercase;
+}
+.input-group-field input, .input-group-field select, .input-group-field textarea {
+background: var(--bg-pure);
+border: 1px solid var(--border-color);
+color: white;
+padding: 16px;
+font-size: 16px;
+border-radius: 6px;
+}
+.input-group-field input:focus, .input-group-field select:focus, .input-group-field textarea:focus {
+border-color: var(--accent-orange);
+outline: none;
+}
+.form-policy-note {
+font-size: 12px;
+color: var(--text-muted);
+text-align: center;
+line-height: 1.4;
+}
+/* ==========================================================================
+9. СЕКЦИЯ ДОВЕРИЯ: ОФИЦИАЛЬНАЯ ГАРАНТИЯ И СЕРТИФИКАТЫ
+========================================================================== */
+.warranty-section {
+padding: 100px 0;
+}
+.warranty-banner-box {
+background: linear-gradient(135deg, #1f1401, #0f0a02);
+border: 1px solid var(--accent-orange);
+border-radius: 12px;
+padding: 60px;
+display: flex;
+align-items: center;
+gap: 50px;
+}
+.warranty-seal {
+font-size: 80px;
+background: rgba(255,153,0,0.1);
+padding: 30px;
+border-radius: 50%;
+line-height: 1;
+}
+.warranty-text-box h3 {
+font-size: 32px;
+color: var(--accent-yellow);
+margin-bottom: 15px;
+}
+.warranty-text-box p {
+font-size: 17px;
+line-height: 1.6;
+color: #dddddd;
+margin: 0;
+}
+/* ==========================================================================
+10. БАЗА ЗНАНИЙ И ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ (FAQ ACCORDION)
+========================================================================== */
+.faq-section {
+padding: 100px 0;
+}
+.faq-accordion-wrapper {
+max-width: 900px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+.faq-item-node {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-radius: 6px;
+overflow: hidden;
+}
+.faq-trigger-button {
+width: 100%;
+background: transparent;
+border: none;
+padding: 25px;
+text-align: left;
+color: white;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.faq-trigger-button:hover { color: var(--accent-yellow); }
+.faq-content-panel {
+padding: 0 25px 25px 25px;
+color: var(--text-muted);
+font-size: 16px;
+line-height: 1.6;
+}
+/* ==========================================================================
+11. ГЕОЛОКАЦИОННЫЙ УЗЕЛ И ПОДВАЛ САЙТА (FOOTER & MAPS)
+========================================================================== */
+.footer-gis-section {
+background: var(--bg-pure);
+border-top: 1px solid var(--border-color);
+padding-top: 80px;
+}
+.gis-grid {
+display: grid;
+grid-template-columns: 450px 1fr;
+gap: 50px;
+margin-bottom: 60px;
+}
+.gis-details h2 {
+font-size: 36px;
+color: var(--accent-yellow);
+margin-bottom: 30px;
+}
+.gis-card-info {
+background: var(--bg-card);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+padding: 30px;
+margin-bottom: 25px;
+}
+.gis-card-info p {
+font-size: 16px;
+margin: 12px 0;
+line-height: 1.5;
+}
+.metro-indicator {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: #e61c1c;
+color: white;
+padding: 6px 14px;
+font-weight: bold;
+font-size: 16px;
+border-radius: 4px;
+}
+.giant-map-frame {
+border-radius: 12px;
+overflow: hidden;
+border: 2px solid var(--border-color);
+height: 500px;
+}
+.main-footer-anchor {
+background: #050505;
+padding: 60px 0 30px 0;
+border-top: 1px solid var(--border-color);
+font-size: 14px;
+color: var(--text-muted);
+}
+.footer-matrix-links {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 40px;
+margin-bottom: 40px;
+}
+.footer-column h5 {
+color: white;
+font-size: 16px;
+margin-bottom: 20px;
+text-transform: uppercase;
+}
+.footer-column ul {
+list-style: none;
+padding: 0;
+margin: 0;
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+.footer-column ul a:hover { color: var(--accent-orange); }
+.footer-bottom-copyright {
+border-top: 1px solid var(--border-color);
+padding-top: 30px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 20px;
+}
+/* ==========================================================================
+12. МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТИВНОСТИ ТЕЛЕФОНОВ И ПЛАНШЕТОВ
+========================================================================== */
+@media (max-width: 1200px) {
+.hero-content h1 { font-size: 52px; }
+.pricing-layout { grid-template-columns: 1fr; }
+.brands-grid { grid-template-columns: repeat(4, 1fr); }
+.footer-matrix-links { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 992px) {
+.hero-grid { grid-template-columns: 1fr; text-align: center; }
+.hero-stats-badge { margin-top: 30px; }
+.cta-group { justify-content: center; }
+.lead-grid { grid-template-columns: 1fr; gap: 40px; }
+.gis-grid { grid-template-columns: 1fr; }
+.giant-map-frame { height: 350px; }
+.process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+.container { padding: 0 20px; }
+.main-header .container { flex-direction: column; gap: 20px; text-align: center; }
+.header-phone-block { text-align: center; }
+.header-support-pills { justify-content: center; }
+.top-bar { display: none; }
+.hero-content h1 { font-size: 38px; }
+.brands-grid { grid-template-columns: repeat(2, 1fr); }
+.footer-matrix-links { grid-template-columns: 1fr; }
+.price-table-container { padding: 20px; }
+.table-row-item { flex-direction: column; align-items: flex-start; gap: 15px; }
+.service-pricing-col { width: 100%; justify-content: space-between; }
+}
+
+
+📍 Санкт-Петербург и ЛО
+🕒 Пн-Пт: 11:00-21:00 / Сб-Вс: 12:00-21:00
+
+
+О компании
+Гарантийные обязательства
+Оптовым клиентам
+Филиалы
+
+
+G-M Service
+Федеральный сервисный центр
+
+Поиск запчастей
+Услуги и цены
+Наш техпроцесс
+Служба поддержки
+Контакты
++7 (953) 178-90-70
+На связи. Звоните сейчас
+
+Telegram
+WhatsApp
+
+
+
+
+Профессиональный ремонт электроники мирового класса
+Восстановление мобильных устройств, планшетов и ноутбуков любой сложности. Собственный склад оригинальных комплектующих, промышленное оборудование и расширенная сетевая гарантия.
+
+Оставить заявку
+Смотреть прайс-лист
+
+
+
+
+4.8Рейтинг Яндекс
+20 минСр. время ремонта
+100%Ориг. детали
+
+
+
+
+Быстрый расчет стоимости для вашего устройства:
+
+Выберите тип техники
+Смартфон / Мобильный телефон
+Ноутбук / Ультрабук
+Планшетный ПК
+
+
+Выберите производителя
+Apple
+Samsung
+Xiaomi
+Huawei / Honor
+
+Рассчитать запчасть
+
+
+Обслуживаем все популярные бренды
+Прямые контракты с производителями комплектующих позволяют нам выполнять ремонт аппаратной части устройств без задержек.
+
+
+APPLE
+SAMSUNG
+XIAOMI
+HUAWEI
+HONOR
+REALME
+ASUS
+LENOVO
+ACER
+HP
+DELL
+MSI
+
+
+Фиксированный прайс-лист на работы
+Никаких скрытых накруток. Вы платите ровно ту сумму, которую согласовал инженер перед началом ремонта.
+
+
+
+Смартфоны
+Ноутбуки
+Планшеты
+Сложная пайка BGA
+
+
+
+Наименование базовой услуги
+Стоимость работ
+Полная программно-аппаратная диагностика
+Комплексный стресс-тест всех модулей на осциллографе и термокамере.
+
+
+500 ₽
+0 ₽ ПРИ РЕМОНТЕ
+Заказать
+
+Замена оригинального дисплейного модуля / тачскрина
+Калибровка контроллера дисплея с сохранением функций True Tone / датчиков.
+
+
+от 1 000 ₽
+Заказать
+
+Восстановление системной платы после попадания жидкости
+Ультразвуковая чистка в химических растворах, восстановление сгнивших дорожек.
+
+
+от 1 000 ₽
+Заказать
+
+Замена элементов питания (аккумулятора) высокой емкости
+Установка батарей класса Original с контроллером заряда без ошибок в ОС.
+
+
+от 800 ₽
+Заказать
+
+Восстановление и резервное копирование потерянных данных
+Прямое чтение из чипов памяти NAND/eMMC при критических разрушениях платы.
+
+
+от 500 ₽
+Заказать
+
+
+
+
+
+Этапы работы инженерного отдела
+Мы строго соблюдаем регламенты производителей техники и стандарты антистатической защиты ESD.
+
+
+
+01
+Прием и Логистика
+Фиксируем внешнее состояние устройства, выдаем официальную сохранную расписку с уникальным ID.
+
+
+02
+Инспекция
+Инженер проводит диагностику, выявляет скрытые дефекты и согласовывает финальный бюджет ремонта.
+
+
+03
+Ремонтная зона
+Устранение дефекта на профессиональных паяльных станциях с контролем температурного профиля.
+
+
+04
+ОТК Контроль
+Многоступенчатое тестирование всех функций устройства перед выдачей и оформление гарантии.
+
+
+
+Служба оперативной поддержки клиентов
+Есть вопросы по стоимости или наличию запчастей? Оставьте обращение напрямую дежурному инженеру технологической зоны G-M Service. Отвечаем оперативно.
+✓
+
+Прямой чат с мастером
+Никаких автоответчиков. Только живые технические специалисты.
+
+
+
+✓
+
+Точная калькуляция до выезда
+Назовем цену комплектующих по внутренней базе склада.
+
+
+
+
+
+Оформить электронный тикет
+Ваше имя / Организация
+Контактный телефон
+Тип неисправности
+Выберите из списка
+Разбит экран / Не реагирует сенсор
+Попала влага / Не включается
+Не заряжается / Быстро разряжается
+Сбой ПО / Требуется перепрошивка
+
+
+Отправить тикет
+Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с регламентом компании.
+
+
+
+
+🛡️
+
+Гарантия на аппаратные работы до 12 месяцев
+Мы полностью уверены в квалификации наших инженеров и качестве поставляемых компонентов со складов-партнеров Green Spark и Liberty Project. При любой рекламации устраняем проблему вне очереди за счёт компании.
+
+
+
+Часто задаваемые вопросы
+Собрали важные ответы, которые помогут вам сориентироваться перед визитом в нашу лабораторию.
+
+
+
+Сколько времени занимает диагностика? ▼
+
+Экспресс-тестирование основных модулей занимает около 15-20 минут. Если дефект скрытый (например, блуждающее короткое замыкание или микротрещина в слоях платы), углубленная диагностика может занять до 1 рабочего дня.
+
+
+
+Сохранятся ли данные на моем устройстве? ▼
+
+При стандартном модульном ремонте (замена экрана, АКБ, разъемов) данные не затрагиваются. Однако при сбоях программного обеспечения или сильных повреждениях процессора мы рекомендуем предварительно согласовать процедуру резервного копирования данных.
+
+
+
+Какие запчасти вы используете при замене? ▼
+
+Мы предлагаем два класса деталей на выбор: Original (полные аналоги фабричного производства с идентичной цветопередачей и откликом) и аналоги класса AAA (сертифицированные качественные дубликаты для оптимизации бюджета).
+
+
+
+
+Флагманский сервис-центр
+
+Адрес локации:
+Санкт-Петербург, Северный проспект, дом 75, корпус 1
+(1 этаж, офисный блок 11Н)
+🚇 Академическая
+
+
+График работы отделов:
+Будние дни (Пн-Пт): с 11:00 до 21:00
+Выходные дни (Сб-Вс): с 12:00 до 21:00
+
+Построить маршрут в Яндекс
+
+Услуги ремонта
+
+Ремонт смартфонов
+Ремонт ноутбуков
+Замена матриц
+Пайка плат BGA
+
+
+
+Компоненты
+
+Дисплейные модули
+Аккумуляторы
+Шлейфы и разъемы
+Контроллеры питания
+
+
+
+Информация
+
+О лаборатории
+Условия гарантии
+Корпоративным клиентам
+Карта проезда
+
+Связь с сетью
+
+Приемная: +7 (953) 178-90-70
+Техподдержка Telegram
+Отдел контроля качества
+
+© 2026 G-M Service. Все права защищены
