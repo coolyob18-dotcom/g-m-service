@@ -1,795 +1,433 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>G-M Service — Ремонт мобильной техники в СПб с 2012 года | м. Академическая</title>
-<meta name="description" content="Ремонт смартфонов, планшетов и ноутбуков в Санкт-Петербурге. Замена стекла, экрана, аккумулятора. Пайка BGA. Гарантия до 1 года. Работаем с 2012 года.">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-M Service — Ремонт цифровой техники, запчасти и диагностика</title>
+    <style>
+        /* Цветовая палитра: черный, оранжевый, желтый, белый, серый */
+        :root {
+            --bg-dark: #121212;
+            --bg-gray: #1e1e1e;
+            --light-gray: #f9f9f9;
+            --border-gray: #e5e5e5;
+            --text-dark: #222222;
+            --orange: #ff6600;
+            --yellow: #ffcc00;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--orange);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--bg-dark) 50%, var(--bg-gray));
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #b3b3b3;
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 12px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e05500;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-gray);
+            border: 1px solid var(--orange);
+            margin-left: 10px;
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--orange);
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .section-title span {
+            border-bottom: 4px solid var(--orange);
+            padding-bottom: 6px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            border: 1px solid var(--border-gray);
+            border-top: 4px solid var(--bg-dark);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: var(--bg-dark);
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+            font-size: 15px;
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: var(--orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-gray);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .highlight-box strong {
+            color: var(--orange);
+            font-size: 22px;
+        }
+
+        .brands-section {
+            background-color: var(--light-gray);
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid var(--border-gray);
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .brands-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .brand-badge {
+            background: var(--white);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-gray);
+            color: #555;
+        }
+
+        /* Блок контактов с картой */
+        .contacts-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contacts-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 6px;
+            border-left: 6px solid var(--yellow);
+        }
+
+        .contacts-info h3 {
+            color: var(--yellow);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .info-row strong {
+            color: var(--orange);
+        }
+
+        .map-wrapper {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-gray);
+        }
+
+        .social-buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-vk {
+            background-color: #0077ff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-vk:hover {
+            background-color: #0066dd;
+        }
+
+        .btn-maps {
+            background-color: #fc3f1d;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-maps:hover {
+            background-color: #e33517;
+        }
+
+        footer {
+            background-color: var(--bg-dark);
+            color: #777;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 32px; }
+            .contacts-container { flex-direction: column; }
+            .map-wrapper { height: 300px; }
+            nav a { margin: 0 10px; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ШАПКА -->
-<nav class="topnav" id="topnav">
-  <div class="container topnav-inner">
-    <a href="index.html" class="brand">
-      <img src="https://i.supaimg.com/e00548c4-829d-46b0-9494-9d1abf72f97e/5c152c93-39a4-4d19-90cd-0b6ce0de226c.jpg"
-           alt="G-M Service — ремонт мобильной техники"
-           class="brand-logo-img">
-    </a>
-    <div class="nav-menu">
-      <a href="remont-smartfonov.html">Смартфоны</a>
-      <a href="remont-noutbukov.html">Ноутбуки</a>
-      <a href="remont-planshetov.html">Планшеты</a>
-      <a href="#calc">Калькулятор</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contact">Контакты</a>
-    </div>
-    <div class="nav-phone">
-      <a href="tel:+79531789070">+7 953 178-90-70</a>
-      <small>Пн–Пт 11:00–21:00 · Сб–Вс 12:00–21:00</small>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-eyebrow">
-          <span class="dot" id="statusDot"></span>
-          <span id="statusText">Работаем с 2012 года · Северный пр. 75к1</span>
+    <header>
+        <div class="header-container">
+            <div class="logo">G-M <span>SERVICE</span></div>
+            <nav>
+                <a href="#services">Услуги</a>
+                <a href="#delivery">Доставка и Оплата</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
         </div>
-        <h1 class="h1">
-          Ремонт мобильной техники<br>
-          <span class="accent">за 1 час</span><br>
-          с гарантией до 1 года
-        </h1>
-        <p class="lead">
-          G-M Service — сервисный центр полного цикла. Модульный и компонентный ремонт смартфонов, планшетов и ноутбуков. Пайка BGA, восстановление дисплеев, продажа запчастей.
-        </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary btn-lg">Оставить заявку</a>
-          <a href="tel:+79531789070" class="btn btn-secondary btn-lg">📞 Позвонить</a>
+    </header>
+
+    <section class="hero">
+        <h1>G-M Service — <span>Ремонт электроники</span></h1>
+        <p>Надежное восстановление гаджетов с 2012 года. Профессиональное оборудование, собственный склад запчастей и строгое соблюдение сроков.</p>
+        <a href="https://avito.ru" target="_blank" class="btn">Магазин на Авито</a>
+        <a href="https://vk.ru" target="_blank" class="btn btn-secondary">Мы ВКонтакте</a>
+    </section>
+
+    <section class="section" id="services">
+        <div class="highlight-box">
+            Стоимость диагностики всего <strong>500 рублей</strong>. При последующем ремонте у нас — <strong>БЕСПЛАТНО!</strong>
         </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="num">2012</div>
-            <div class="label">год основания<br>сервисного центра</div>
-          </div>
-          <div class="hero-stat">
-            <div class="num">15 000+</div>
-            <div class="label">устройств<br>отремонтировано</div>
-          </div>
-          <div class="hero-stat">
-            <div class="num">4.8</div>
-            <div class="label">рейтинг<br>на Авито</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-phone-mock">
-          <div class="hero-phone-screen">
-            <div class="ps-icon">⚡</div>
-            <div class="ps-text">Ремонт запущен<br>Осталось: 47 минут</div>
-            <div class="ps-bar"><div></div></div>
-          </div>
-        </div>
-        <div class="hero-card hero-card-1">
-          <div class="hc-icon">🛡️</div>
-          <div class="hc-title">Гарантия до 1 года</div>
-          <div class="hc-sub">на работу и детали</div>
-        </div>
-        <div class="hero-card hero-card-2">
-          <div class="hc-icon">⚡</div>
-          <div class="hc-title">Ремонт за 1 час</div>
-          <div class="hc-sub">большинство работ</div>
-        </div>
-        <div class="hero-card hero-card-3">
-          <div class="hc-icon">✅</div>
-          <div class="hc-title">Бесплатная диагностика</div>
-          <div class="hc-sub">даже при отказе от ремонта</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ЛЕНТА БРЕНДОВ -->
-<div class="brands-strip">
-  <div class="brands-track">
-    <a href="apple/index.html" class="brand-logo">Apple</a>
-    <a href="samsung/index.html" class="brand-logo">Samsung</a>
-    <a href="xiaomi/index.html" class="brand-logo">Xiaomi</a>
-    <a href="huawei/index.html" class="brand-logo">Huawei</a>
-    <a href="honor/index.html" class="brand-logo">Honor</a>
-    <a href="realme/index.html" class="brand-logo">Realme</a>
-    <a href="oppo/index.html" class="brand-logo">Oppo</a>
-    <a href="oneplus/index.html" class="brand-logo">OnePlus</a>
-    <a href="sony/index.html" class="brand-logo">Sony</a>
-    <a href="lenovo/index.html" class="brand-logo">Lenovo</a>
-    <a href="asus/index.html" class="brand-logo">Asus</a>
-    <a href="hp/index.html" class="brand-logo">HP</a>
-    <a href="acer/index.html" class="brand-logo">Acer</a>
-    <a href="dell/index.html" class="brand-logo">Dell</a>
-    <!-- дубль для бесшовной прокрутки -->
-    <a href="apple/index.html" class="brand-logo">Apple</a>
-    <a href="samsung/index.html" class="brand-logo">Samsung</a>
-    <a href="xiaomi/index.html" class="brand-logo">Xiaomi</a>
-    <a href="huawei/index.html" class="brand-logo">Huawei</a>
-    <a href="honor/index.html" class="brand-logo">Honor</a>
-    <a href="realme/index.html" class="brand-logo">Realme</a>
-    <a href="oppo/index.html" class="brand-logo">Oppo</a>
-    <a href="oneplus/index.html" class="brand-logo">OnePlus</a>
-    <a href="sony/index.html" class="brand-logo">Sony</a>
-    <a href="lenovo/index.html" class="brand-logo">Lenovo</a>
-    <a href="asus/index.html" class="brand-logo">Asus</a>
-    <a href="hp/index.html" class="brand-logo">HP</a>
-    <a href="acer/index.html" class="brand-logo">Acer</a>
-    <a href="dell/index.html" class="brand-logo">Dell</a>
-  </div>
-</div>
+        <h2 class="section-title"><span>Направления ремонта</span></h2>
+        <div class="grid">
+            <div class="card" style="border-top-color: var(--orange);">
+                <h3>Модульный ремонт</h3>
+                <ul>
+                    <li>Замена оригинальных дисплеев и матриц</li>
+                    <li>Установка новых аккумуляторов и корпусов</li>
+Замена поврежденных шлейфов, плат, камер и динамиков
 
-<!-- КАТАЛОГ УСЛУГ -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="services-head">
-      <div>
-        <div class="section-label">Что мы ремонтируем</div>
-        <h2 class="h2">Каталог <span class="accent">услуг</span></h2>
-      </div>
-    </div>
-    <div class="services-grid">
-      <a href="remont-smartfonov.html" class="service-card">
-        <div class="sc-icon">📱</div>
-        <h3>Ремонт смартфонов</h3>
-        <p>Замена экранов, стекла, аккумуляторов, разъёмов зарядки, камер. Ремонт после залития и падений.</p>
-        <div class="sc-price">от <strong>1 200 ₽</strong></div>
-      </a>
-      <a href="remont-noutbukov.html" class="service-card">
-        <div class="sc-icon">💻</div>
-        <h3>Ремонт ноутбуков</h3>
-        <p>Замена матриц, клавиатур, чистка от пыли, замена термопасты. Ремонт материнских плат.</p>
-        <div class="sc-price">от <strong>1 800 ₽</strong></div>
-      </a>
-      <a href="remont-planshetov.html" class="service-card">
-        <div class="sc-icon">📲</div>
-        <h3>Ремонт планшетов</h3>
-        <p>iPad, Samsung Galaxy Tab, Xiaomi Pad и другие. Замена стекла, экрана, батареи.</p>
-        <div class="sc-price">от <strong>2 500 ₽</strong></div>
-      </a>
-      <a href="remont-smartfonov.html" class="service-card">
-        <div class="sc-icon">🔬</div>
-        <h3>Пайка BGA и компонентный ремонт</h3>
-        <p>Замена разъёмов USB, аудио, кнопок. Пайка BGA-микросхем, реболлинг, восстановление дорожек.</p>
-        <div class="sc-price">от <strong>4 000 ₽</strong></div>
-      </a>
-      <a href="remont-smartfonov.html" class="service-card">
-        <div class="sc-icon">🖥️</div>
-        <h3>Восстановление дисплеев</h3>
-        <p>Замена стекла, тачскрина, поляризационных плёнок. Восстановление шлейфов дисплеев.</p>
-        <div class="sc-price">от <strong>3 500 ₽</strong></div>
-      </a>
-      <a href="remont-smartfonov.html" class="service-card">
-        <div class="sc-icon">💧</div>
-        <h3>Ремонт после залития</h3>
-        <p>Ультразвуковая чистка платы, восстановление цепей питания, замена повреждённых компонентов.</p>
-        <div class="sc-price">от <strong>2 500 ₽</strong></div>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- ПОПУЛЯРНЫЕ УСЛУГИ ДЛЯ БРЕНДОВ -->
-<section class="popular">
-  <div class="container">
-    <div class="section-label">Популярные страницы</div>
-    <h2 class="h2">Чаще всего <span class="accent">заказывают</span></h2>
-    <p class="lead" style="margin-bottom:40px; max-width:640px;">
-      Прямые ссылки на конкретные услуги для конкретных моделей. Нажмите — узнаете цену и сроки.
-    </p>
-    <div class="popular-grid">
-      <a href="samsung/zamena-stekla-samsung-z-fold-7.html" class="popular-card">
-        <div class="pc-brand">Samsung</div>
-        <div class="pc-title">Замена стекла Z Fold 7</div>
-        <div class="pc-price">8 500 ₽ · ~3 часа</div>
-      </a>
-      <a href="apple/zamena-stekla-iphone-13.html" class="popular-card">
-        <div class="pc-brand">Apple</div>
-        <div class="pc-title">Замена стекла iPhone 13</div>
-        <div class="pc-price">6 500 ₽ · ~2 часа</div>
-      </a>
-      <a href="xiaomi/zamena-stekla-xiaomi-redmi-note-12.html" class="popular-card">
-        <div class="pc-brand">Xiaomi</div>
-        <div class="pc-title">Замена стекла Redmi Note 12</div>
-        <div class="pc-price">3 200 ₽ · ~2 часа</div>
-      </a>
-      <a href="apple/zamena-akkumulyatora-iphone-14.html" class="popular-card">
-        <div class="pc-brand">Apple</div>
-        <div class="pc-title">Замена аккумулятора iPhone 14</div>
-        <div class="pc-price">4 000 ₽ · ~1 час</div>
-      </a>
-      <a href="samsung/zamena-ekrana-samsung-s22.html" class="popular-card">
-        <div class="pc-brand">Samsung</div>
-        <div class="pc-title">Замена экрана Galaxy S22</div>
-        <div class="pc-price">13 900 ₽ · ~2 часа</div>
-      </a>
-      <a href="huawei/zamena-ekrana-huawei-p50.html" class="popular-card">
-        <div class="pc-brand">Huawei</div>
-        <div class="pc-title">Замена экрана Huawei P50</div>
-        <div class="pc-price">9 500 ₽ · ~2 часа</div>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- ЦИФРЫ -->
-<section class="numbers">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:50px;">
-      <div class="section-label">G-M Service в цифрах</div>
-      <h2 class="h2">Масштаб, которому <span class="accent">доверяют</span></h2>
-    </div>
-    <div class="numbers-grid">
-      <div class="number-card">
-        <div class="big">15К+</div>
-        <div class="desc">устройств отремонтировано с 2012 года</div>
-      </div>
-      <div class="number-card">
-        <div class="big">1</div>
-        <div class="desc">сервисный центр в Санкт-Петербурге, м. Академическая</div>
-      </div>
-      <div class="number-card">
-        <div class="big">2</div>
-        <div class="desc">сертифицированных мастера в штате компании</div>
-      </div>
-      <div class="number-card">
-        <div class="big">4.8</div>
-        <div class="desc">рейтинг сервиса на площадке Авито</div>
-      </div>
-    </div>
-  </div>
-</section>
+Сложный ремонт BGA
 
-<!-- КАЛЬКУЛЯТОР -->
-<section class="calc" id="calc">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:44px;">
-      <div class="section-label">Онлайн-расчёт</div>
-      <h2 class="h2">Узнайте стоимость <span class="accent">за 10 секунд</span></h2>
-      <p class="lead" style="max-width:600px; margin:0 auto;">
-        Выберите устройство, модель и тип поломки — покажем цену и время работы
-      </p>
-    </div>
-    <div class="calc-shell">
-      <div class="calc-form">
-        <select id="calcDevice">
-          <option value="">— Тип устройства —</option>
-          <option value="phone">📱 Смартфон</option>
-          <option value="laptop">💻 Ноутбук</option>
-          <option value="tablet">📲 Планшет</option>
-        </select>
-        <select id="calcModel" disabled>
-          <option value="">— Модель —</option>
-        </select>
-        <select id="calcIssue" disabled>
-          <option value="">— Тип поломки —</option>
-        </select>
-      </div>
-      <div class="calc-result" id="calcResult">
-        <div class="cr-label">Стоимость ремонта</div>
-        <div class="cr-price" id="calcPrice">—</div>
-        <div class="cr-details" id="calcDetails"></div>
-        <div class="cr-actions">
-          <a href="#contact" class="btn btn-primary">Записаться на ремонт</a>
-          <a href="tel:+79531789070" class="btn btn-secondary">Позвонить мастеру</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+Высокоточная пайка на компонентном уровне
+Замена BGA микросхем, контроллеров питания
+Восстановление плат после влаги и неквалифицированных СЦ
 
-<!-- ПРОЦЕСС -->
-<section class="process" id="process">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:50px;">
-      <div class="section-label">Как мы работаем</div>
-      <h2 class="h2">4 шага до <span class="accent">готового устройства</span></h2>
-    </div>
-    <div class="process-track">
-      <div class="process-step">
-        <div class="ps-circle">1</div>
-        <h4>Заявка</h4>
-        <p>Оставляете заявку на сайте, звоните или пишете в мессенджер.</p>
-      </div>
-      <div class="process-step">
-        <div class="ps-circle">2</div>
-        <h4>Диагностика</h4>
-        <p>Бесплатно находим причину поломки и согласовываем точную цену.</p>
-      </div>
-      <div class="process-step">
-        <div class="ps-circle">3</div>
-        <h4>Ремонт</h4>
-        <p>Большинство работ выполняем в течение часа, при вас или с уведомлением.</p>
-      </div>
-      <div class="process-step">
-        <div class="ps-circle">4</div>
-        <h4>Гарантия</h4>
-        <p>Выдаём устройство, квитанцию и гарантию до 1 года на работу и детали.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ПРЕИМУЩЕСТВА -->
-<section id="advantages">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:50px;">
-      <div class="section-label">Почему выбирают нас</div>
-      <h2 class="h2">Наши <span class="accent">преимущества</span></h2>
-    </div>
-    <div class="advantages-grid">
-      <div class="advantage-card">
-        <div class="adv-icon">📅</div>
-        <h4>Работаем с 2012 года</h4>
-        <p>Более 12 лет опыта в ремонте цифровой техники. За это время мы отремонтировали тысячи устройств.</p>
-      </div>
-      <div class="advantage-card">
-        <div class="adv-icon">⏱️</div>
-        <h4>Соблюдаем сроки</h4>
-        <p>В обязательном порядке выполняем работу в оговорённые сроки. Большинство ремонтов — в течение часа.</p>
-      </div>
-      <div class="advantage-card">
-        <div class="adv-icon">💎</div>
-        <h4>Качество работы</h4>
-        <p>Используем профессиональное оборудование и качественные комплектующие. Гарантия до 1 года.</p>
-      </div>
-      <div class="advantage-card">
-        <div class="adv-icon">🤝</div>
-        <h4>Гибкая система скидок</h4>
-        <p>Всегда идём навстречу новым и постоянным клиентам. Для контрагентов — специальные условия.</p>
-      </div>
-      <div class="advantage-card">
-        <div class="adv-icon">🏢</div>
-        <h4>Работа с контрагентами</h4>
-        <p>Многие компании сотрудничают с нами на постоянной основе. Полный пакет документов, оплата по счёту.</p>
-      </div>
-      <div class="advantage-card">
-        <div class="adv-icon">📦</div>
-        <h4>Продажа запчастей</h4>
-        <p>Не менее важная составляющая нашей работы — реализация запчастей и комплектующих.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ГАРАНТИЯ -->
-<section class="warranty" id="warranty">
-  <div class="container">
-    <div class="warranty-grid">
-      <div>
-        <div class="section-label">Гарантия и качество</div>
-        <h2 class="h2">Отвечаем за <span class="accent">каждый ремонт</span></h2>
-        <p class="lead">G-M Service работает по строгим стандартам качества. Все мастера — опытные специалисты, запчасти — оригинальные или сертифицированные аналоги.</p>
-        <div class="warranty-list">
-          <div class="warranty-item">
-            <div class="wi-check">✓</div>
-            <div>
-              <h4>Гарантия до 1 года</h4>
-              <p>На работу и установленные детали. Если что-то пойдёт не так — переделаем бесплатно.</p>
-            </div>
-          </div>
-          <div class="warranty-item">
-            <div class="wi-check">✓</div>
-            <div>
-              <h4>Оригинальные запчасти</h4>
-              <p>Работаем с проверенными поставщиками. Все детали имеют гарантию производителя.</p>
-            </div>
-          </div>
-          <div class="warranty-item">
-            <div class="wi-check">✓</div>
-            <div>
-              <h4>Бесплатная диагностика</h4>
-              <p>Даже если вы откажетесь от ремонта — диагностика ничего не будет стоить.</p>
-            </div>
-          </div>
-          <div class="warranty-item">
-            <div class="wi-check">✓</div>
-            <div>
-              <h4>Соблюдаем сроки</h4>
-              <p>Работаем в оговорённые сроки. Если ремонт займёт больше времени — предупредим заранее.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="warranty-visual">
-        <div class="warranty-badge">
-          <div class="wb-num">365</div>
-          <div class="wb-text">дней гарантии</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+Восстановление экранов
 
-<!-- ДОСТАВКА И ОПЛАТА -->
-<section class="delivery" id="delivery">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:50px;">
-      <div class="section-label">Доставка и оплата</div>
-      <h2 class="h2">Удобные способы <span class="accent">получить устройство</span></h2>
-    </div>
-    <div class="delivery-grid">
-      <div class="delivery-card">
-        <div class="dc-icon">🚚</div>
-        <h3>Доставка</h3>
-        <div class="delivery-list">
-          <div class="delivery-item">Курьером по городу</div>
-          <div class="delivery-item">В пункт выдачи</div>
-          <div class="delivery-item">Самовывоз из сервиса</div>
-          <div class="delivery-item">Отправка во все города и регионы России</div>
-        </div>
-        <div class="delivery-note">
-          <strong>Экспресс-доставка</strong> по городу — 500 ₽ в пределах КАД.<br>
-          Возможна <strong>Авито Доставка</strong>.<br>
-          Отправка Почтой России первым классом или СДЭКом — от 600 ₽.
-        </div>
-      </div>
-      <div class="delivery-card">
-        <div class="dc-icon">💳</div>
-        <h3>Оплата</h3>
-        <div class="delivery-list">
-          <div class="delivery-item">Наличными при получении</div>
-          <div class="delivery-item">Переводом на карту</div>
-          <div class="delivery-item">По расчётному счёту (для юридических лиц)</div>
-        </div>
-        <div class="delivery-note">
-          Принимаем платежи наличными и переводом. Для организаций и контрагентов — оплата по расчётному счёту с полным пакетом документов.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+Заводская замена стёкол и тачскринов отдельно от матриц
+Замена испорченных поляризационных плёнок
+Восстановление поврежденных шлейфов дисплейных модулей
 
-<!-- ОТЗЫВЫ -->
-<section class="reviews" id="reviews">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:50px;">
-      <div class="section-label">Отзывы клиентов</div>
-      <h2 class="h2">Нам доверяют <span class="accent">тысячи людей</span></h2>
-      <p class="lead">Рейтинг 4.8 на Авито · Более 15 000 выполненных ремонтов</p>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">«Разбил экран iPhone 13, обратился в G-M Service. Сделали быстро и качественно, цена ниже, чем у официалов.»</p>
-        <div class="review-author">
-          <div class="review-avatar">М</div>
-          <div>
-            <div class="review-name">Михаил К.</div>
-            <div class="review-source">Авито</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">«Залила ноутбук кофе, думала — всё. Ребята из G-M сделали ультразвуковую чистку, заменили пару чипов. Работает как новый!»</p>
-        <div class="review-author">
-          <div class="review-avatar">А</div>
-          <div>
-            <div class="review-name">Анна В.</div>
-            <div class="review-source">Авито</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">«Обращаемся как контрагенты уже не первый год. Всегда соблюдают сроки, качество на высоте, работают по расчётному счёту.»</p>
-        <div class="review-author">
-          <div class="review-avatar">С</div>
-          <div>
-            <div class="review-name">Сергей П.</div>
-            <div class="review-source">Авито</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:44px;">
-      <a href="https://www.avito.ru/brands/g-m_sc/all/predlozheniya_uslug?sellerId=435f89f76623b9a4a6a959bdb073b941" target="_blank" rel="noopener" class="btn btn-secondary">
-        Все отзывы и услуги на Авито →
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:50px;">
-      <div class="section-label">Частые вопросы</div>
-      <h2 class="h2">Отвечаем на <span class="accent">важные вопросы</span></h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question">Удалятся ли мои данные при ремонте?</div>
-        <div class="faq-answer">Нет. Мы не трогаем ваши данные без необходимости. Если ремонт требует сброса настроек, мастер предупредит заранее и попросит ваше разрешение.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Сколько длится диагностика?</div>
-        <div class="faq-answer">Обычно 15–30 минут. В сложных случаях (залитие, проблема с материнской платой) — до 1 часа. Диагностика бесплатна, даже если вы откажетесь от ремонта.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Что делать, если в телефон попала вода?</div>
-        <div class="faq-answer">Первое — не включайте устройство. Второе — не трясите и не грейте феном. Третье — как можно скорее привезите к нам.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Какую гарантию вы даёте?</div>
-        <div class="faq-answer">На работу — от 3 месяцев, на запчасти — до 1 года в зависимости от детали. Гарантия подтверждается квитанцией.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Можно ли отремонтировать при мне?</div>
-        <div class="faq-answer">Да. Простые ремонты (замена экрана, аккумулятора, разъёма зарядки) делаем при вас в течение часа.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Работаете ли вы с юридическими лицами?</div>
-        <div class="faq-answer">Да, работаем с контрагентами на постоянной основе. Предоставляем полный пакет документов, оплата по расчётному счёту.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Продаёте ли вы запчасти отдельно?</div>
-        <div class="faq-answer">Да, продажа запчастей — одна из ключевых составляющих нашей работы. Свяжитесь с нами для уточнения наличия и цены.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- КОНТАКТЫ -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div>
-        <div class="section-label">Контакты</div>
-        <h2 class="h2">Приходите — <span class="accent">мы рядом</span></h2>
-        <p class="lead">Наш сервисный центр находится в 3 минутах от метро Академическая. Заходите без записи или оставьте заявку.</p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <div class="ci-icon">📍</div>
-            <div>
-              <div class="ci-label">Адрес</div>
-              <div class="ci-value">Северный проспект 75к1,<br>метро Академическая</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="ci-icon">📞</div>
-            <div>
-              <div class="ci-label">Телефон</div>
-              <div class="ci-value"><a href="tel:+79531789070">+7 953 178-90-70</a></div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="ci-icon">🕐</div>
-            <div>
-              <div class="ci-label">Режим работы</div>
-              <div class="ci-value">
-                <strong style="color:#FFD400;">Пн–Пт:</strong> 11:00 – 21:00<br>
-                <strong style="color:#FFD400;">Сб–Вс:</strong> 12:00 – 21:00
-              </div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="ci-icon">🛒</div>
-            <div>
-              <div class="ci-label">Мы на Авито</div>
-              <div class="ci-value"><a href="https://www.avito.ru/brands/g-m_sc/all/predlozheniya_uslug?sellerId=435f89f76623b9a4a6a959bdb073b941" target="_blank" rel="noopener">Профиль G-M Service на Авито</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-form">
-        <h3>Оставить заявку</h3>
-        <p class="cf-sub">Перезвоним в течение 5 минут и ответим на все вопросы</p>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="text" name="name" placeholder="Ваше имя" required>
-          <input type="tel" name="phone" placeholder="Номер телефона" required>
-          <textarea name="message" placeholder="Опишите проблему (необязательно)"></textarea>
-          <button type="submit" class="btn btn-primary">Отправить заявку</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+Компоненты и ремонт для любых брендов
 
-<!-- ПОДВАЛ -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="brand">
-          <img src="https://i.supaimg.com/e00548c4-829d-46b0-9494-9d1abf72f97e/5c152c93-39a4-4d19-90cd-0b6ce0de226c.jpg"
-               alt="G-M Service"
-               class="brand-logo-img">
-        </a>
-        <p>Сервисный центр по ремонту цифровой техники. Работаем с 2012 года. Модульный и компонентный ремонт, продажа запчастей.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Ремонт по брендам</h4>
-        <a href="apple/index.html">Apple / iPhone</a>
-        <a href="samsung/index.html">Samsung</a>
-        <a href="xiaomi/index.html">Xiaomi</a>
-        <a href="huawei/index.html">Huawei</a>
-        <a href="honor/index.html">Honor</a>
-      </div>
-      <div class="footer-col">
-        <h4>Услуги</h4>
-        <a href="remont-smartfonov.html">Ремонт смартфонов</a>
-        <a href="remont-noutbukov.html">Ремонт ноутбуков</a>
-        <a href="remont-planshetov.html">Ремонт планшетов</a>
-        <a href="#warranty">Гарантия</a>
-      </div>
-      <div class="footer-col">
-        <h4>Контакты</h4>
-        <a href="tel:+79531789070">+7 953 178-90-70</a>
-        <p>Северный пр. 75к1</p>
-        <p>Пн–Пт 11:00–21:00</p>
-        <p>Сб–Вс 12:00–21:00</p>
-        <a href="https://www.avito.ru/brands/g-m_sc/all/predlozheniya_uslug?sellerId=435f89f76623b9a4a6a959bdb073b941" target="_blank" rel="noopener">Мы на Авито →</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2012–2025 G-M Service. Все права защищены.</div>
-      <div>Санкт-Петербург · метро Академическая</div>
-    </div>
-  </div>
-</footer>
+Apple (iPhone, MacBook)
+Samsung
+Xiaomi
+Huawei / Honor
+Realme / Oppo
+Infinix / Tecno
+OnePlus / Nothing Phone
+Sony / HTC / LG
+Motorola / Meizu
+Lenovo / HP / Acer / Asus
+Dell / Toshiba / ZTE
 
-<!-- ПЛАВАЮЩИЕ КНОПКИ -->
-<div class="float-buttons">
-  <a href="https://wa.me/79531789070" class="float-btn float-wa" target="_blank" title="WhatsApp">💬</a>
-  <a href="https://t.me/+79531789070" class="float-btn float-tg" target="_blank" title="Telegram">✈️</a>
-</div>
+Доставка и Оплата
 
-<script>
-/* ШАПКА */
-const topnav = document.getElementById('topnav');
-window.addEventListener('scroll', () => {
-  topnav.classList.toggle('scrolled', window.scrollY > 40);
-});
 
-/* ИНДИКАТОР ОТКРЫТО / ЗАКРЫТО */
-(function() {
-  const dot = document.getElementById('statusDot');
-  const text = document.getElementById('statusText');
-  if (!dot || !text) return;
-  const now = new Date();
-  const day = now.getDay();
-  const time = now.getHours() + now.getMinutes() / 60;
-  const isWeekend = (day === 0 || day === 6);
-  const openHour = isWeekend ? 12 : 11;
-  const closeHour = 21;
-  const isOpen = time >= openHour && time < closeHour;
-  if (isOpen) {
-    dot.style.background = '#25D366';
-    dot.style.boxShadow = '0 0 10px #25D366';
-    const closesIn = Math.round((closeHour - time) * 60);
-    text.textContent = 'Сейчас открыто · закроемся через ' + closesIn + ' мин';
-  } else {
-    dot.style.background = '#ff4d4d';
-    dot.style.boxShadow = '0 0 10px #ff4d4d';
-    let nextOpen = '';
-    if (time < openHour) nextOpen = 'откроемся сегодня в ' + openHour + ':00';
-    else nextOpen = 'завтра в ' + (isWeekend || day === 5 ? 12 : 11) + ':00';
-    text.textContent = 'Сейчас закрыто · ' + nextOpen;
-  }
-})();
+Условия доставки
 
-/* КАЛЬКУЛЯТОР */
-const calcData = {
-  phone: {
-    models: {
-      'iphone-13': { name: 'iPhone 13' },
-      'iphone-14': { name: 'iPhone 14' },
-      'samsung-s22': { name: 'Samsung Galaxy S22' },
-      'xiaomi-redmi': { name: 'Xiaomi Redmi Note' }
-    },
-    issues: {
-      screen:  { name: 'Замена экрана',        prices: { 'iphone-13': 8500, 'iphone-14': 11000, 'samsung-s22': 7500, 'xiaomi-redmi': 3200 } },
-      battery: { name: 'Замена аккумулятора',   prices: { 'iphone-13': 3500, 'iphone-14': 4000,  'samsung-s22': 3000, 'xiaomi-redmi': 1500 } },
-      charge:  { name: 'Ремонт разъёма',        prices: { 'iphone-13': 2800, 'iphone-14': 3000,  'samsung-s22': 2500, 'xiaomi-redmi': 1200 } },
-      water:   { name: 'Чистка после залития',  prices: { 'iphone-13': 4500, 'iphone-14': 5000,  'samsung-s22': 4000, 'xiaomi-redmi': 2500 } }
-    }
-  },
-  laptop: {
-    models: {
-      'macbook-air': { name: 'MacBook Air' },
-      'macbook-pro': { name: 'MacBook Pro' },
-      'lenovo': { name: 'Lenovo IdeaPad' },
-      'asus': { name: 'ASUS VivoBook' }
-    },
-    issues: {
-      screen:   { name: 'Замена матрицы',       prices: { 'macbook-air': 15000, 'macbook-pro': 22000, 'lenovo': 6500, 'asus': 5800 } },
-      battery:  { name: 'Замена аккумулятора',  prices: { 'macbook-air': 6000,  'macbook-pro': 7500,  'lenovo': 3500, 'asus': 3200 } },
-      keyboard: { name: 'Замена клавиатуры',    prices: { 'macbook-air': 5500,  'macbook-pro': 7000,  'lenovo': 2800, 'asus': 2500 } },
-      overheat: { name: 'Чистка + термопаста',  prices: { 'macbook-air': 3500,  'macbook-pro': 4000,  'lenovo': 2000, 'asus': 1800 } }
-    }
-  },
-  tablet: {
-    models: {
-      'ipad-air': { name: 'iPad Air' },
-      'ipad-pro': { name: 'iPad Pro' },
-      'samsung-tab': { name: 'Samsung Galaxy Tab' },
-      'xiaomi-pad': { name: 'Xiaomi Pad' }
-    },
-    issues: {
-      screen:  { name: 'Замена экрана',   prices: { 'ipad-air': 9000, 'ipad-pro': 14000, 'samsung-tab': 7000, 'xiaomi-pad': 5500 } },
-      battery: { name: 'Замена батареи',  prices: { 'ipad-air': 4500, 'ipad-pro': 5500,  'samsung-tab': 4000, 'xiaomi-pad': 3000 } },
-      charge:  { name: 'Ремонт разъёма',  prices: { 'ipad-air': 3500, 'ipad-pro': 4000,  'samsung-tab': 3000, 'xiaomi-pad': 2500 } }
-    }
-  }
-};
+Самовывоз из нашего сервисного центра в СПб
+Экспресс-доставка курьером по городу — 500 рублей в пределах КАД
+Авито Доставка в любые доступные пункты выдачи
+Отправка по всей России: СДЭК (от 600 руб.) или Почта России (1-й класс)
 
-const calcDevice = document.getElementById('calcDevice');
-const calcModel = document.getElementById('calcModel');
-const calcIssue = document.getElementById('calcIssue');
-const calcResult = document.getElementById('calcResult');
-const calcPrice = document.getElementById('calcPrice');
-const calcDetails = document.getElementById('calcDetails');
 
-calcDevice.addEventListener('change', function() {
-  const dev = this.value;
-  calcModel.innerHTML = '<option value="">— Модель —</option>';
-  calcIssue.innerHTML = '<option value="">— Тип поломки —</option>';
-  calcResult.classList.remove('show');
-  calcModel.disabled = !dev;
-  calcIssue.disabled = true;
-  if (!dev) return;
-  const models = calcData[dev].models;
-  for (const key in models) {
-    const opt = document.createElement('option');
-    opt.value = key;
-    opt.textContent = models[key].name;
-    calcModel.appendChild(opt);
-  }
-});
 
-calcModel.addEventListener('change', function() {
-  const dev = calcDevice.value;
-  const model = this.value;
-  calcIssue.innerHTML = '<option value="">— Тип поломки —</option>';
-  calcResult.classList.remove('show');
-  calcIssue.disabled = !model;
-  if (!model) return;
-  const issues = calcData[dev].issues;
-  for (const key in issues) {
-    const opt = document.createElement('option');
-    opt.value = key;
-    opt.textContent = issues[key].name;
-    calcIssue.appendChild(opt);
-  }
-});
+Варианты оплаты
 
-calcIssue.addEventListener('change', function() {
-  const dev = calcDevice.value;
-  const model = calcModel.value;
-  const issue = this.value;
-  if (!issue) { calcResult.classList.remove('show'); return; }
-  const price = calcData[dev].issues[issue].prices[model];
-  const issueName = calcData[dev].issues[issue].name;
-  const modelName = calcData[dev].models[model].name;
-  calcPrice.textContent = price.toLocaleString('ru-RU') + ' ₽';
-  calcDetails.textContent = modelName + ' · ' + issueName + ' · Время: до 1 часа';
-  calcResult.classList.add('show');
-});
+Наличный расчет при получении в сервисе
+Удобные переводы для быстрых расчетов
+По расчетному счету для долгосрочного сотрудничества с контрагентами
 
-/* FAQ */
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', function() {
-    const item = this.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
-</script>
 
-</body>
-</html>
+
+Контакты и Карта
+
+
+G-M Service в Санкт-Петербурге
+Телефон: +7 (953) 178-90-70
+Адрес: Северный пр-т, дом 75, к1
+Ближайшее метро:
+• Академическая (1,2 км)
+• Гражданский проспект (1,7 км)
+• Политехническая (2,6 км)
+Режим работы: Ежедневно с 12:00 до 22:00
+
+
+© 2026 G-M Service. Все права защищены. Качественные комплектующие и гибкая система скидок
