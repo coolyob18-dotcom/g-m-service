@@ -3,476 +3,557 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-M Service — Интернет-магазин запчастей и ремонт техники</title>
+    <title>G-M Service — Сервисный центр и запчасти</title>
     <style>
         :root {
-            --bg-dark: #1A1A1A;
-            --bg-gray: #242424;
-            --light-gray: #F5F6F7;
-            --border-gray: #E0E0E0;
-            --text-dark: #2C2C2C;
-            --orange: #FF5E00;
-            --yellow: #FFC400;
-            --white: #FFFFFF;
+            --bg-dark: #111111;
+            --bg-card: #1A1A1A;
+            --bg-body: #0F0F0F;
+            --accent-orange: #FF5500;
+            --accent-yellow: #FFBB00;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --border-color: #2A2A2A;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--white);
-            color: var(--text-dark);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        /* Верхняя панель */
-        .top-bar {
-            background-color: var(--bg-dark);
-            color: #AAA;
-            font-size: 13px;
-            padding: 8px 20px;
-            display: flex;
-            justify-content: space-between;
-            max-width: 100%;
-            border-bottom: 1px solid #333;
-        }
-        .top-bar-left span { margin-right: 15px; color: #FFF; }
-
-        /* Главная Шапка */
+        /* Шапка сайта */
         header {
-            background-color: var(--white);
-            padding: 20px;
+            background-color: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-bottom: 3px solid var(--orange);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .header-container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            gap: 30px;
         }
 
-        .logo-block {
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        /* Поисковая строка */
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .search-container:focus-within {
+            border-color: var(--accent-orange);
+        }
+
+        .search-container input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 14px 20px;
+            color: var(--text-main);
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-container button {
+            background: var(--accent-orange);
+            color: var(--text-main);
+            border: none;
+            padding: 0 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-container button:hover {
+            background: #e04b00;
+        }
+
+        /* Навигация / Действия */
+        .nav-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 28px;
-            font-weight: 900;
-            cursor: pointer;
+            gap: 25px;
         }
-        .logo-block span { color: var(--orange); }
 
-        .search-box {
-            flex: 1;
-            max-width: 500px;
-            position: relative;
-            display: flex;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--border-gray);
-            border-radius: 4px 0 0 4px;
-            outline: none;
-            font-size: 15px;
-        }
-        .search-box input:focus { border-color: var(--orange); }
-        .search-btn {
-            background-color: var(--orange);
-            color: var(--white);
+        .nav-btn {
+            background: transparent;
             border: none;
-            padding: 0 20px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .user-actions {
-            display: flex;
-            gap: 20px;
-        }
-        .action-item {
-            text-align: center;
-            cursor: pointer;
-            position: relative;
-            font-size: 13px;
+            color: var(--text-main);
+            font-size: 14px;
             font-weight: 600;
-            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            transition: color 0.2s;
         }
-        .action-item:hover { color: var(--orange); }
-        .action-icon { font-size: 20px; display: block; margin-bottom: 20px; }
-        .badge {
+
+        .nav-btn:hover {
+            color: var(--accent-orange);
+        }
+
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .counter-badge {
             position: absolute;
-            top: -5px;
-            right: 10px;
-            background-color: var(--orange);
-            color: var(--white);
-            border-radius: 50%;
-            padding: 2px 6px;
+            top: -6px;
+            right: 2px;
+            background: var(--accent-orange);
+            color: var(--text-main);
             font-size: 11px;
+            font-weight: 800;
+            border-radius: 20px;
+            padding: 2px 7px;
         }
 
-        /* Главный контейнер страниц */
-        .main-content {
-            max-width: 1200px;
-            margin: 30px auto;
+        /* Контентная область */
+        .main-wrapper {
+            max-width: 1300px;
+            margin: 40px auto;
             padding: 0 20px;
-            min-height: 500px;
+            min-height: 60px;
         }
 
-        .page-title {
-            font-size: 28px;
-            margin-bottom: 25px;
-            font-weight: 700;
+        .page-header-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
         }
 
-        /* Каталог */
-        .catalog-grid {
+        /* Сетка каталога */
+        .grid-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
-        .product-card {
-            border: 1px solid var(--border-gray);
-            border-radius: 6px;
-            padding: 20px;
+
+        .item-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: box-shadow 0.3s;
-        }
-        .product-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-        .product-title { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
-        .price-tag { font-size: 18px; font-weight: 800; color: var(--orange); margin: 15px 0; }
-        .card-buttons { display: flex; gap: 10px; }
-        .btn-buy {
-            background-color: var(--orange);
-            color: var(--white);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            flex: 1;
-        }
-        .btn-fav {
-            background-color: var(--light-gray);
-            border: 1px solid var(--border-gray);
-            padding: 8px;
-            border-radius: 4px;
-            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        /* Форма заказа ремонта */
-        .repair-form-container {
-            background-color: var(--light-gray);
-            border-radius: 6px;
+        .item-card:hover {
+            transform: translateY(-4px);
+            border-color: #3A3A3A;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .status-instock {
+            color: #00FF66;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .item-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+        }
+
+        .card-action-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .primary-btn {
+            background: var(--accent-orange);
+            color: var(--text-main);
+            border: none;
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .primary-btn:hover {
+            background: #e04b00;
+        }
+
+        .like-btn {
+            background: #252525;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0 14px;
+            cursor: pointer;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .like-btn:hover {
+            background: #333333;
+            color: #FF3366;
+        }
+
+        /* Форма заказа */
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 40px;
-            border-left: 5px solid var(--orange);
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto;
         }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-gray);
-            border-radius: 4px;
-            outline: none;
-            font-size: 15px;
-        }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--orange); }
 
-        /* Модальное окно входа */
-        .modal {
+        .input-wrapper {
+            margin-bottom: 24px;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper input, .input-wrapper select, .input-wrapper  textarea {
+            width: 100%;
+            background: #202020;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--text-main);
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-wrapper input:focus, .input-wrapper select:focus, .input-wrapper textarea:focus {
+            border-color: var(--accent-orange);
+        }
+
+        /* Пустые состояния страниц */
+        .state-empty {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-muted);
+        }
+
+        .state-empty-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        /* Модалка входа */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
         }
-        .modal-content {
-            background: var(--white);
-            padding: 35px;
-            border-radius: 6px;
+
+        .modal-view {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
             width: 100%;
-            max-width: 450px;
+            max-width: 440px;
             position: relative;
         }
-        .close-modal {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px; cursor: pointer;
-        }
-        .btn-primary-modal {
-            background-color: var(--orange);
-            color: var(--white);
-            width: 100%; padding: 14px;
-            border: none; border-radius: 4px;
-            font-weight: bold; font-size: 16px;
-            cursor: pointer; margin-top: 15px;
-        }
-        .btn-secondary-modal {
-            background-color: #FFF2EB;
-            color: var(--orange);
-            width: 100%; padding: 14px;
-            border: 1px solid #FFD5BF; border-radius: 4px;
-            font-weight: bold; font-size: 16px;
-            cursor: pointer; margin-top: 10px;
-            text-align: center; text-decoration: none; display: block;
-        }
 
-        /* Список корзины */
-        .empty-state { text-align: center; padding: 50px 0; color: #888; }
-        .empty-state-icon { font-size: 60px; margin-bottom: 15px; }
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-size: 24px; color: var(--text-muted); cursor: pointer;
+        }
 
         /* Футер */
         footer {
-            background-color: var(--bg-dark);
-            color: #FFF;
-            padding: 50px 20px 20px;
-            margin-top: 60px;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 20px 30px;
+            margin-top: 100px;
         }
-        .footer-grid {
-            max-width: 1200px;
+
+        .footer-container {
+            max-width: 1300px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 40px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 40px;
+            margin-bottom: 30px;
         }
-        .footer-col h4 { color: var(--yellow); margin-bottom: 20px; font-size: 16px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #BBB; text-decoration: none; font-size: 14px; }
-        .footer-col ul li a:hover { color: var(--orange); }
-        .footer-bottom { text-align: center; padding-top: 20px; color: #666; font-size: 13px; }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-orange);
+        }
+
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 12px; }
+        .footer-column ul li a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-column ul li a:hover { color: var(--text-main); }
+
+        .footer-credits {
+            text-align: center;
+            color: #555555;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Топ бар -->
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <span>📍 Санкт-Петербург, Северный пр-т, 75к1</span>
-            <span>⏱ Ежедневно: 12:00 - 22:00</span>
-        </div>
-        <div>📞 +7 (953) 178-90-70</div>
-    </div>
-
-    <!-- Основная Шапка -->
+    <!-- Шапка приложения -->
     <header>
         <div class="header-container">
-            <div class="logo-block" onclick="showPage('catalog')">G-M <span>SERVICE</span></div>
-            
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Поиск услуг по ремонту (например: iPhone, Samsung)...">
-                <button class="search-btn" onclick="handleSearch()">Найти</button>
-            </div>
+            <div class="logo" onclick="changePage('catalog')">G-M <span>SERVICE</span></div>
+Найти
+Вход
 
-            <div class="user-actions">
-                <div class="action-item" onclick="openModal()">
-                    <span class="action-icon">👤</span>Войти
-                </div>
-                <div class="action-item" onclick="showPage('favorites')">
-                    <span class="action-icon">❤️</span>Избранное
-                    <span class="badge" id="fav-count">0</span>
-                </div>
-                <div class="action-item" onclick="showPage('cart')">
-                    <span class="action-icon">🛒</span>Корзина
-                    <span class="badge" id="cart-count">0</span>
-                </div>
-                <div class="action-item" onclick="showPage('order')">
-                    <span class="action-icon">🛠️</span>Заявка
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Основной интерактивный контент -->
-    <main class="main-content">
-        
-        <!-- СТРАНИЦА: КАТАЛОГ -->
-        <div id="page-catalog">
-Каталог услуг по ремонту и запчастям
 
-Избранные услуги
+Избранное
+0
 
-Ваша Корзина
 
-Оформить заявку на ремонт техники
+
+Корзина
+0
+
+
+
+Заявка
+
+
+
+Услуги ремонта и комплектующие
+
+Избранное
+
+Корзина выбранных услуг
+
+Оформление заявки на ремонт
 
 
 Имя *
 Фамилия *
 Номер телефона *
-Ваше устройство *
-Выберите категорию устройства
+Устройство *
+Выберите категорию...
 iPhone / iPad
 Samsung
 Xiaomi / Redmi
 Ноутбук / MacBook
-Другая марка
+Другое устройство
 
 
-Описание проблемы поломки *
-Отправить заявку в G-M Service
+Описание неисправности *
+Отправить заявку в сервис
 
 
 
 ×
-Вход в личный кабинет
-Введите логин или номер телефона *
- Запомнить меня
+Вход в кабинет
+Логин или номер телефона *
+ Запомнить
 Забыли пароль?
 
 Продолжить
 Зарегистрироваться
 
-Каталог услуг
+Услуги
 
-Запчасти для телефонов
-Запчасти для планшетов
-Замена дисплеев и стекол
-Сложный ремонт BGA
+Ремонт телефонов
+Ремонт планшетов
+Замена стекол дисплея
+Сложная пайка BGA
 
 
 
-О Компании
+Компания
 
+О нас
 Вакансии
-Контакты
-Отзывы клиентов
+Отзывы
 
 
 
 Помощь
 
-Условия доставки
-Условия оплаты
-Гарантия и возврат
+Доставка
+Оплата
+Гарантия
 
 
 
-Связаться с нами
+Контакты
 📞 +7 (953) 178-90-70
 ✉️ order@gmservice.ru
 
 
 
+© 2026 G-M Service. Все права защищены. Качественный ремонт цифровой техники в СПб.
 
-© 2026 G-M Service. Все права защищены. Разработано в соответствии с высокими стандартами обслуживания.
-
-// База данных услуг сервиса
-const products = [
+// Статическая база данных услуг
+const serviceDatabase = [
 { id: 1, name: "Замена стекла Samsung S22 / S23 / S24 Ultra", price: 1000, category: "Samsung" },
-{ id: 2, name: "Дисплей с тачскрином для iPhone 11 FOXCONN", price: 2730, category: "iPhone" },
+{ id: 2, name: "Дисплей с тачскрином для iPhone 11 (FOXCONN)", price: 2730, category: "iPhone" },
 { id: 3, name: "Аккумулятор повышенной емкости для iPhone 13 Pro Max", price: 1950, category: "iPhone" },
 { id: 4, name: "Замена стекла экрана Apple Watch s4 / s5 / s6", price: 2800, category: "iPhone" },
-{ id: 5, name: "Сложный BGA ремонт материнской платы MacBook / Asus / HP", price: 1000, category: "Ноутбук" },
-{ id: 6, name: "Восстановление цепей питания после попадания жидкости", price: 1000, category: "Другое" }
+{ id: 5, name: "Сложный BGA ремонт материнской платы MacBook / Asus", price: 1000, category: "Ноутбук" },
+{ id: 6, name: "Восстановление плат после попадания жидкости", price: 1000, category: "Другое" }
 ];
-let cart = [];
-let favorites = [];
-// Инициализация каталога услуг
-function initCatalog(items = products) {
-const container = document.getElementById('catalog-products');
-container.innerHTML = '';
-if(items.length === 0) {
-container.innerHTML = 'Ничего не найдено по вашему запросу.';
+let stateCart = [];
+let stateFav = [];
+// Вывод элементов в каталог
+function renderCatalog(dataset = serviceDatabase) {
+const grid = document.getElementById('catalog-renderer');
+grid.innerHTML = '';
+if(dataset.length === 0) {
+grid.innerHTML = 'Ничего не найдено. Попробуйте изменить запрос.';
 return;
 }
-items.forEach(prod => {
-container.innerHTML += <div class="product-card"> <div> <div class="product-title">${prod.name}</div> <div style="color: green; font-size: 13px; font-weight: bold;">✔ В наличии в сервисе</div> </div> <div> <div class="price-tag">от ${prod.price} ₽</div> <div class="card-buttons"> <button class="btn-buy" onclick="addToCart(${prod.id})">В корзину</button> <button class="btn-fav" onclick="addToFav(${prod.id})">❤️</button> </div> </div> </div>;
+dataset.forEach(item => {
+grid.innerHTML += <div class="item-card"> <div> <div class="item-title">${item.name}</div> <div class="status-instock"><span>●</span> Запчасти в наличии</div> </div> <div> <div class="item-price">от ${item.price} ₽</div> <div class="card-action-row"> <button class="primary-btn" onclick="pushToCart(${item.id})">В корзину</button> <button class="like-btn" onclick="pushToFav(${item.id})">❤️</button> </div> </div> </div>;
 });
 }
-// Менеджер переключения страниц (SPA)
-function showPage(pageId) {
-document.getElementById('page-catalog').style.display = 'none';
-document.getElementById('page-favorites').style.display = 'none';
-document.getElementById('page-cart').style.display = 'none';
-document.getElementById('page-order').style.display = 'none';
-document.getElementById('page-' + pageId).style.display = 'block';
+// Переключение вкладок (SPA)
+function changePage(targetId) {
+const pages = ['catalog', 'favorites', 'cart', 'order'];
+pages.forEach(p => {
+document.getElementById('view-' + p).style.display = 'none';
+});
+document.getElementById('view-' + targetId).style.display = 'block';
 window.scrollTo(0,0);
-if(pageId === 'cart') renderCart();
-if(pageId === 'favorites') renderFav();
+if(targetId === 'cart') rebuildCartView();
+if(targetId === 'favorites') rebuildFavView();
 }
-// Логика фильтрации через строку поиска
-function handleSearch() {
-const query = document.getElementById('search-input').value.toLowerCase();
-const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-showPage('catalog');
-initCatalog(filtered);
+// Поиск
+function execSearch() {
+const val = document.getElementById('query-input').value.toLowerCase();
+const filtered = serviceDatabase.filter(item => item.name.toLowerCase().includes(val));
+changePage('catalog');
+renderCatalog(filtered);
 }
-// Логика добавления в Корзину
-function addToCart(id) {
-const prod = products.find(p => p.id === id);
-cart.push(prod);
-document.getElementById('cart-count').innerText = cart.length;
-alert('Услуга "' + prod.name + '" добавлена в корзину!');
+// Добавление элементов
+function pushToCart(id) {
+const target = serviceDatabase.find(x => x.id === id);
+stateCart.push(target);
+document.getElementById('cart-lbl').innerText = stateCart.length;
+alert('Добавлено в корзину: ' + target.name);
 }
-// Логика добавления в Избранное
-function addToFav(id) {
-const prod = products.find(p => p.id === id);
-if(!favorites.includes(prod)) {
-favorites.push(prod);
-document.getElementById('fav-count').innerText = favorites.length;
+function pushToFav(id) {
+const target = serviceDatabase.find(x => x.id === id);
+if(!stateFav.some(x => x.id === id)) {
+stateFav.push(target);
+document.getElementById('fav-lbl').innerText = stateFav.length;
 alert('Добавлено в избранное');
 }
 }
-// Отрисовка динамического контента корзины
-function renderCart() {
-const container = document.getElementById('cart-content');
-if(cart.length === 0) {
-container.innerHTML =  <div class="empty-state"> <div class="empty-state-icon">🛒</div> <h3>Ваша корзина пуста</h3> <p style="margin-top:10px;"><a href="#" onclick="showPage('catalog')" style="color:var(--orange); text-decoration:none; font-weight:bold;">Нажмите здесь</a>, чтобы продолжить выбор услуг</p> </div>;
+// Сборка страницы корзины
+function rebuildCartView() {
+const root = document.getElementById('cart-renderer');
+if(stateCart.length === 0) {
+root.innerHTML =  <div class="state-empty"> <div class="state-empty-icon">🛒</div> <h3 style="font-size:20px; font-weight:700; color:#fff;">Ваша корзина пуста</h3> <p style="margin-top:10px; font-size:14px;">Вы можете выбрать услуги в <a href="#" onclick="changePage('catalog'); return false;" style="color:var(--accent-orange); text-decoration:none;">каталоге</a></p> </div>;
 } else {
-let html = '';
-cart.forEach(item => {
-html +=  <div style="padding:15px 0; border-bottom:1px solid var(--border-gray); display:flex; justify-content:space-between; background:transparent;"> <span>${item.name}</span><strong>от ${item.price} ₽</strong> </div>;
+let layout = '';
+stateCart.forEach(item => {
+layout +=  <div style="display:flex; justify-content:between; align-items:center; padding:16px 0; border-bottom:1px solid var(--border-color); justify-content: space-between;"> <span style="font-weight:600;">${item.name}</span> <span style="color:var(--accent-yellow); font-weight:700;">от ${item.price} ₽</span> </div>;
 });
-html += <button class="btn-buy" style="margin-top:20px; width:100%; padding:15px; font-size:16px;" onclick="showPage('order')">Перейти к оформлению ремонта</button></div>;
-container.innerHTML = html;
+layout += <button class="primary-btn" style="width:100%; margin-top:25px; padding:15px; font-size:16px;" onclick="changePage('order')">Перейти к оформлению заявки</button></div>;
+root.innerHTML = layout;
 }
 }
-// Отрисовка динамического контента избранного
-function renderFav() {
-const container = document.getElementById('favorites-content');
-container.innerHTML = '';
-if(favorites.length === 0) {
-container.innerHTML =  <div class="empty-state"> <div class="empty-state-icon">❤️</div> <h3>Список избранных элементов пуст</h3> </div>;
+// Сборка страницы избранного
+function rebuildFavView() {
+const root = document.getElementById('favorites-renderer');
+root.innerHTML = '';
+if(stateFav.length === 0) {
+root.innerHTML =  <div class="state-empty" style="grid-column: 1/-1;"> <div class="state-empty-icon">❤️</div> <h3 style="font-size:20px; font-weight:700; color:#fff;">В избранном пока ничего нет</h3> </div>;
 } else {
-favorites.forEach(prod => {
-container.innerHTML +=  <div class="product-card"> <div class="product-title">${prod.name}</div> <div class="price-tag">от ${prod.price} ₽</div> <button class="btn-buy" onclick="addToCart(${prod.id})">Перенести в корзину</button> </div>;
+stateFav.forEach(item => {
+root.innerHTML +=  <div class="item-card"> <div class="item-title">${item.name}</div> <div> <div class="item-price">от ${item.price} ₽</div> <button class="primary-btn" style="width:100%;" onclick="pushToCart(${item.id})">Перенести в корзину</button> </div> </div>;
 });
 }
 }
-// Управление модальным окном
-function openModal() { document.getElementById('loginModal').style.display = 'flex'; }
-function closeModal() { document.getElementById('loginModal').style.display = 'none'; }
-// Логика обработки и отправки заполненной формы заказа
-function submitRepairForm(event) {
-event.preventDefault();
-const name = document.getElementById('form-name').value;
-const surname = document.getElementById('form-surname').value;
-const device = document.getElementById('form-device').value;
-alert(Уважаемый ${name} ${surname}! Ваша заявка на ремонт устройства (${device}) успешно принята в работу G-M Service. Наш мастер свяжется с вами в течение 10 минут.);
-document.getElementById('repairForm').reset();
-cart = [];
-document.getElementById('cart-count').innerText = 0;
-showPage('catalog');
+// Модалка ЛК
+function toggleModal(visible) {
+document.getElementById('accountModal').style.display = visible ? 'flex' : 'none';
 }
-// Стартовый запуск сборщика при загрузке приложения
-initCatalog();
+// Сборка формы ремонта
+function handleFormSubmit(e) {
+e.preventDefault();
+const name = document.getElementById('client-name').value;
+const surname = document.getElementById('client-surname').value;
+const dev = document.getElementById('client-device').value;
+alert(Заявка успешно создана!\n\nУважаемый ${name} ${surname}, менеджер G-M Service свяжется с вами по указанному телефону в течение 10 минут для согласования ремонта устройства (${dev}).);
+document.getElementById('submissionForm').reset();
+stateCart = [];
+document.getElementById('cart-lbl').innerText = 0;
+changePage('catalog');
+}
+// Запуск приложения
+renderCatalog();
