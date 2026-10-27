@@ -3,40 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-M Service — Ремонт цифровой техники, запчасти и диагностика</title>
+    <title>G-M Service — Интернет-магазин запчастей и ремонт техники</title>
     <style>
-        /* Цветовая палитра: черный, оранжевый, желтый, белый, серый */
         :root {
-            --bg-dark: #121212;
-            --bg-gray: #1e1e1e;
-            --light-gray: #f9f9f9;
-            --border-gray: #e5e5e5;
-            --text-dark: #222222;
-            --orange: #ff6600;
-            --yellow: #ffcc00;
-            --white: #ffffff;
+            --bg-dark: #1A1A1A;
+            --bg-gray: #242424;
+            --light-gray: #F5F6F7;
+            --border-gray: #E0E0E0;
+            --text-dark: #2C2C2C;
+            --orange: #FF5E00;
+            --yellow: #FFC400;
+            --white: #FFFFFF;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
             background-color: var(--white);
             color: var(--text-dark);
-            line-height: 1.6;
         }
 
-        header {
+        /* Верхняя панель */
+        .top-bar {
             background-color: var(--bg-dark);
-            color: var(--white);
-            padding: 15px 20px;
+            color: #AAA;
+            font-size: 13px;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 100%;
+            border-bottom: 1px solid #333;
+        }
+        .top-bar-left span { margin-right: 15px; color: #FFF; }
+
+        /* Главная Шапка */
+        header {
+            background-color: var(--white);
+            padding: 20px;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border-bottom: 3px solid var(--orange);
         }
 
@@ -44,390 +56,423 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--orange);
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--yellow);
-        }
-
-        .hero {
-            background: linear-gradient(135deg, var(--bg-dark) 50%, var(--bg-gray));
-            color: var(--white);
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: var(--yellow);
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #b3b3b3;
-            margin-bottom: 35px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            background-color: var(--orange);
-            color: var(--white);
-            padding: 12px 28px;
-            border: none;
-            border-radius: 4px;
-            font-size: 15px;
-            font-weight: bold;
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 900;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.2s, transform 0.2s;
         }
+        .logo-block span { color: var(--orange); }
 
-        .btn:hover {
-            background-color: #e05500;
-            transform: translateY(-2px);
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+            display: flex;
         }
-
-        .btn-secondary {
-            background-color: var(--bg-gray);
-            border: 1px solid var(--orange);
-            margin-left: 10px;
-            color: var(--white);
-            padding: 12px 28px;
-            border-radius: 4px;
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-gray);
+            border-radius: 4px 0 0 4px;
+            outline: none;
             font-size: 15px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.2s;
         }
-
-        .btn-secondary:hover {
+        .search-box input:focus { border-color: var(--orange); }
+        .search-btn {
             background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-        .section {
-            padding: 60px 20px;
+        .user-actions {
+            display: flex;
+            gap: 20px;
+        }
+        .action-item {
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .action-item:hover { color: var(--orange); }
+        .action-icon { font-size: 20px; display: block; margin-bottom: 20px; }
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            background-color: var(--orange);
+            color: var(--white);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 11px;
+        }
+
+        /* Главный контейнер страниц */
+        .main-content {
             max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 500px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* Каталог */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 0.3s;
+        }
+        .product-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .product-title { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+        .price-tag { font-size: 18px; font-weight: 800; color: var(--orange); margin: 15px 0; }
+        .card-buttons { display: flex; gap: 10px; }
+        .btn-buy {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            flex: 1;
+        }
+        .btn-fav {
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-gray);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Форма заказа ремонта */
+        .repair-form-container {
+            background-color: var(--light-gray);
+            border-radius: 6px;
+            padding: 40px;
+            border-left: 5px solid var(--orange);
+            max-width: 700px;
             margin: 0 auto;
         }
-
-        .section-title {
-            text-align: center;
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        .section-title span {
-            border-bottom: 4px solid var(--orange);
-            padding-bottom: 6px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 6px;
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
             border: 1px solid var(--border-gray);
-            border-top: 4px solid var(--bg-dark);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
-            color: var(--bg-dark);
-        }
-
-        .card ul {
-            list-style: none;
-        }
-
-        .card ul li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 15px;
+            border-radius: 4px;
+            outline: none;
             font-size: 15px;
         }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--orange); }
 
-        .card ul li::before {
-            content: "•";
-            color: var(--orange);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .highlight-box {
-            background-color: var(--light-gray);
-            border: 1px solid var(--border-gray);
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 18px;
-        }
-
-        .highlight-box strong {
-            color: var(--orange);
-            font-size: 22px;
-        }
-
-        .brands-section {
-            background-color: var(--light-gray);
-            text-align: center;
-            padding: 50px 20px;
-            border-top: 1px solid var(--border-gray);
-            border-bottom: 1px solid var(--border-gray);
-        }
-
-        .brands-list {
-            display: flex;
-            flex-wrap: wrap;
+        /* Модальное окно входа */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
             justify-content: center;
-            gap: 10px;
-            margin-top: 25px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            align-items: center;
         }
-
-        .brand-badge {
+        .modal-content {
             background: var(--white);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid var(--border-gray);
-            color: #555;
+            padding: 35px;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
         }
-
-        /* Блок контактов с картой */
-        .contacts-container {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 30px;
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 24px; cursor: pointer;
         }
-
-        .contacts-info {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--bg-dark);
+        .btn-primary-modal {
+            background-color: var(--orange);
             color: var(--white);
-            padding: 40px;
-            border-radius: 6px;
-            border-left: 6px solid var(--yellow);
+            width: 100%; padding: 14px;
+            border: none; border-radius: 4px;
+            font-weight: bold; font-size: 16px;
+            cursor: pointer; margin-top: 15px;
         }
-
-        .contacts-info h3 {
-            color: var(--yellow);
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .info-row {
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-
-        .info-row strong {
+        .btn-secondary-modal {
+            background-color: #FFF2EB;
             color: var(--orange);
+            width: 100%; padding: 14px;
+            border: 1px solid #FFD5BF; border-radius: 4px;
+            font-weight: bold; font-size: 16px;
+            cursor: pointer; margin-top: 10px;
+            text-align: center; text-decoration: none; display: block;
         }
 
-        .map-wrapper {
-            flex: 1;
-            min-width: 300px;
-            height: 400px;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-gray);
-        }
+        /* Список корзины */
+        .empty-state { text-align: center; padding: 50px 0; color: #888; }
+        .empty-state-icon { font-size: 60px; margin-bottom: 15px; }
 
-        .social-buttons {
-            margin-top: 25px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-vk {
-            background-color: #0077ff;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-        .btn-vk:hover {
-            background-color: #0066dd;
-        }
-
-        .btn-maps {
-            background-color: #fc3f1d;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-        .btn-maps:hover {
-            background-color: #e33517;
-        }
-
+        /* Футер */
         footer {
             background-color: var(--bg-dark);
-            color: #777;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
-            border-top: 1px solid #222;
+            color: #FFF;
+            padding: 50px 20px 20px;
+            margin-top: 60px;
         }
-
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; }
-            .hero h1 { font-size: 32px; }
-            .contacts-container { flex-direction: column; }
-            .map-wrapper { height: 300px; }
-            nav a { margin: 0 10px; }
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 40px;
         }
+        .footer-col h4 { color: var(--yellow); margin-bottom: 20px; font-size: 16px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #BBB; text-decoration: none; font-size: 14px; }
+        .footer-col ul li a:hover { color: var(--orange); }
+        .footer-bottom { text-align: center; padding-top: 20px; color: #666; font-size: 13px; }
     </style>
 </head>
 <body>
 
+    <!-- Топ бар -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>📍 Санкт-Петербург, Северный пр-т, 75к1</span>
+            <span>⏱ Ежедневно: 12:00 - 22:00</span>
+        </div>
+        <div>📞 +7 (953) 178-90-70</div>
+    </div>
+
+    <!-- Основная Шапка -->
     <header>
         <div class="header-container">
-            <div class="logo">G-M <span>SERVICE</span></div>
-            <nav>
-                <a href="#services">Услуги</a>
-                <a href="#delivery">Доставка и Оплата</a>
-                <a href="#contacts">Контакты</a>
-            </nav>
+            <div class="logo-block" onclick="showPage('catalog')">G-M <span>SERVICE</span></div>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Поиск услуг по ремонту (например: iPhone, Samsung)...">
+                <button class="search-btn" onclick="handleSearch()">Найти</button>
+            </div>
+
+            <div class="user-actions">
+                <div class="action-item" onclick="openModal()">
+                    <span class="action-icon">👤</span>Войти
+                </div>
+                <div class="action-item" onclick="showPage('favorites')">
+                    <span class="action-icon">❤️</span>Избранное
+                    <span class="badge" id="fav-count">0</span>
+                </div>
+                <div class="action-item" onclick="showPage('cart')">
+                    <span class="action-icon">🛒</span>Корзина
+                    <span class="badge" id="cart-count">0</span>
+                </div>
+                <div class="action-item" onclick="showPage('order')">
+                    <span class="action-icon">🛠️</span>Заявка
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>G-M Service — <span>Ремонт электроники</span></h1>
-        <p>Надежное восстановление гаджетов с 2012 года. Профессиональное оборудование, собственный склад запчастей и строгое соблюдение сроков.</p>
-        <a href="https://avito.ru" target="_blank" class="btn">Магазин на Авито</a>
-        <a href="https://vk.ru" target="_blank" class="btn btn-secondary">Мы ВКонтакте</a>
-    </section>
+    <!-- Основной интерактивный контент -->
+    <main class="main-content">
+        
+        <!-- СТРАНИЦА: КАТАЛОГ -->
+        <div id="page-catalog">
+Каталог услуг по ремонту и запчастям
 
-    <section class="section" id="services">
-        <div class="highlight-box">
-            Стоимость диагностики всего <strong>500 рублей</strong>. При последующем ремонте у нас — <strong>БЕСПЛАТНО!</strong>
-        </div>
+Избранные услуги
 
-        <h2 class="section-title"><span>Направления ремонта</span></h2>
-        <div class="grid">
-            <div class="card" style="border-top-color: var(--orange);">
-                <h3>Модульный ремонт</h3>
-                <ul>
-                    <li>Замена оригинальных дисплеев и матриц</li>
-                    <li>Установка новых аккумуляторов и корпусов</li>
-Замена поврежденных шлейфов, плат, камер и динамиков
+Ваша Корзина
+
+Оформить заявку на ремонт техники
 
 
+Имя *
+Фамилия *
+Номер телефона *
+Ваше устройство *
+Выберите категорию устройства
+iPhone / iPad
+Samsung
+Xiaomi / Redmi
+Ноутбук / MacBook
+Другая марка
 
+
+Описание проблемы поломки *
+Отправить заявку в G-M Service
+
+
+
+×
+Вход в личный кабинет
+Введите логин или номер телефона *
+ Запомнить меня
+Забыли пароль?
+
+Продолжить
+Зарегистрироваться
+
+Каталог услуг
+
+Запчасти для телефонов
+Запчасти для планшетов
+Замена дисплеев и стекол
 Сложный ремонт BGA
 
-Высокоточная пайка на компонентном уровне
-Замена BGA микросхем, контроллеров питания
-Восстановление плат после влаги и неквалифицированных СЦ
+
+
+О Компании
+
+Вакансии
+Контакты
+Отзывы клиентов
 
 
 
-Восстановление экранов
-
-Заводская замена стёкол и тачскринов отдельно от матриц
-Замена испорченных поляризационных плёнок
-Восстановление поврежденных шлейфов дисплейных модулей
-
-
-
-Компоненты и ремонт для любых брендов
-
-Apple (iPhone, MacBook)
-Samsung
-Xiaomi
-Huawei / Honor
-Realme / Oppo
-Infinix / Tecno
-OnePlus / Nothing Phone
-Sony / HTC / LG
-Motorola / Meizu
-Lenovo / HP / Acer / Asus
-Dell / Toshiba / ZTE
-
-Доставка и Оплата
-
+Помощь
 
 Условия доставки
-
-Самовывоз из нашего сервисного центра в СПб
-Экспресс-доставка курьером по городу — 500 рублей в пределах КАД
-Авито Доставка в любые доступные пункты выдачи
-Отправка по всей России: СДЭК (от 600 руб.) или Почта России (1-й класс)
+Условия оплаты
+Гарантия и возврат
 
 
 
-Варианты оплаты
-
-Наличный расчет при получении в сервисе
-Удобные переводы для быстрых расчетов
-По расчетному счету для долгосрочного сотрудничества с контрагентами
+Связаться с нами
+📞 +7 (953) 178-90-70
+✉️ order@gmservice.ru
 
 
 
-Контакты и Карта
 
+© 2026 G-M Service. Все права защищены. Разработано в соответствии с высокими стандартами обслуживания.
 
-G-M Service в Санкт-Петербурге
-Телефон: +7 (953) 178-90-70
-Адрес: Северный пр-т, дом 75, к1
-Ближайшее метро:
-• Академическая (1,2 км)
-• Гражданский проспект (1,7 км)
-• Политехническая (2,6 км)
-Режим работы: Ежедневно с 12:00 до 22:00
-
-
-© 2026 G-M Service. Все права защищены. Качественные комплектующие и гибкая система скидок
+// База данных услуг сервиса
+const products = [
+{ id: 1, name: "Замена стекла Samsung S22 / S23 / S24 Ultra", price: 1000, category: "Samsung" },
+{ id: 2, name: "Дисплей с тачскрином для iPhone 11 FOXCONN", price: 2730, category: "iPhone" },
+{ id: 3, name: "Аккумулятор повышенной емкости для iPhone 13 Pro Max", price: 1950, category: "iPhone" },
+{ id: 4, name: "Замена стекла экрана Apple Watch s4 / s5 / s6", price: 2800, category: "iPhone" },
+{ id: 5, name: "Сложный BGA ремонт материнской платы MacBook / Asus / HP", price: 1000, category: "Ноутбук" },
+{ id: 6, name: "Восстановление цепей питания после попадания жидкости", price: 1000, category: "Другое" }
+];
+let cart = [];
+let favorites = [];
+// Инициализация каталога услуг
+function initCatalog(items = products) {
+const container = document.getElementById('catalog-products');
+container.innerHTML = '';
+if(items.length === 0) {
+container.innerHTML = 'Ничего не найдено по вашему запросу.';
+return;
+}
+items.forEach(prod => {
+container.innerHTML += <div class="product-card"> <div> <div class="product-title">${prod.name}</div> <div style="color: green; font-size: 13px; font-weight: bold;">✔ В наличии в сервисе</div> </div> <div> <div class="price-tag">от ${prod.price} ₽</div> <div class="card-buttons"> <button class="btn-buy" onclick="addToCart(${prod.id})">В корзину</button> <button class="btn-fav" onclick="addToFav(${prod.id})">❤️</button> </div> </div> </div>;
+});
+}
+// Менеджер переключения страниц (SPA)
+function showPage(pageId) {
+document.getElementById('page-catalog').style.display = 'none';
+document.getElementById('page-favorites').style.display = 'none';
+document.getElementById('page-cart').style.display = 'none';
+document.getElementById('page-order').style.display = 'none';
+document.getElementById('page-' + pageId).style.display = 'block';
+window.scrollTo(0,0);
+if(pageId === 'cart') renderCart();
+if(pageId === 'favorites') renderFav();
+}
+// Логика фильтрации через строку поиска
+function handleSearch() {
+const query = document.getElementById('search-input').value.toLowerCase();
+const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+showPage('catalog');
+initCatalog(filtered);
+}
+// Логика добавления в Корзину
+function addToCart(id) {
+const prod = products.find(p => p.id === id);
+cart.push(prod);
+document.getElementById('cart-count').innerText = cart.length;
+alert('Услуга "' + prod.name + '" добавлена в корзину!');
+}
+// Логика добавления в Избранное
+function addToFav(id) {
+const prod = products.find(p => p.id === id);
+if(!favorites.includes(prod)) {
+favorites.push(prod);
+document.getElementById('fav-count').innerText = favorites.length;
+alert('Добавлено в избранное');
+}
+}
+// Отрисовка динамического контента корзины
+function renderCart() {
+const container = document.getElementById('cart-content');
+if(cart.length === 0) {
+container.innerHTML =  <div class="empty-state"> <div class="empty-state-icon">🛒</div> <h3>Ваша корзина пуста</h3> <p style="margin-top:10px;"><a href="#" onclick="showPage('catalog')" style="color:var(--orange); text-decoration:none; font-weight:bold;">Нажмите здесь</a>, чтобы продолжить выбор услуг</p> </div>;
+} else {
+let html = '';
+cart.forEach(item => {
+html +=  <div style="padding:15px 0; border-bottom:1px solid var(--border-gray); display:flex; justify-content:space-between; background:transparent;"> <span>${item.name}</span><strong>от ${item.price} ₽</strong> </div>;
+});
+html += <button class="btn-buy" style="margin-top:20px; width:100%; padding:15px; font-size:16px;" onclick="showPage('order')">Перейти к оформлению ремонта</button></div>;
+container.innerHTML = html;
+}
+}
+// Отрисовка динамического контента избранного
+function renderFav() {
+const container = document.getElementById('favorites-content');
+container.innerHTML = '';
+if(favorites.length === 0) {
+container.innerHTML =  <div class="empty-state"> <div class="empty-state-icon">❤️</div> <h3>Список избранных элементов пуст</h3> </div>;
+} else {
+favorites.forEach(prod => {
+container.innerHTML +=  <div class="product-card"> <div class="product-title">${prod.name}</div> <div class="price-tag">от ${prod.price} ₽</div> <button class="btn-buy" onclick="addToCart(${prod.id})">Перенести в корзину</button> </div>;
+});
+}
+}
+// Управление модальным окном
+function openModal() { document.getElementById('loginModal').style.display = 'flex'; }
+function closeModal() { document.getElementById('loginModal').style.display = 'none'; }
+// Логика обработки и отправки заполненной формы заказа
+function submitRepairForm(event) {
+event.preventDefault();
+const name = document.getElementById('form-name').value;
+const surname = document.getElementById('form-surname').value;
+const device = document.getElementById('form-device').value;
+alert(Уважаемый ${name} ${surname}! Ваша заявка на ремонт устройства (${device}) успешно принята в работу G-M Service. Наш мастер свяжется с вами в течение 10 минут.);
+document.getElementById('repairForm').reset();
+cart = [];
+document.getElementById('cart-count').innerText = 0;
+showPage('catalog');
+}
+// Стартовый запуск сборщика при загрузке приложения
+initCatalog();
