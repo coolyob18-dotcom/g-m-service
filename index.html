@@ -47,6 +47,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -65,6 +66,7 @@
         .search-container {
             flex: 1;
             max-width: 600px;
+            min-width: 200px;
             display: flex;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -105,20 +107,20 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
         .nav-btn {
             background: transparent;
             border: none;
             color: var(--text-main);
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             position: relative;
             transition: color 0.2s;
         }
@@ -136,7 +138,7 @@
         .counter-badge {
             position: absolute;
             top: -6px;
-            right: 2px;
+            right: 0;
             background: var(--accent-orange);
             color: var(--text-main);
             font-size: 11px;
@@ -175,6 +177,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            gap: 20px;
             transition: transform 0.3s, border-color 0.3s;
         }
 
@@ -270,7 +273,7 @@
             margin-bottom: 8px;
         }
 
-        .input-wrapper input, .input-wrapper select, .input-wrapper  textarea {
+        .input-wrapper input, .input-wrapper select, .input-wrapper textarea {
             width: 100%;
             background: #202020;
             border: 1px solid var(--border-color);
@@ -362,6 +365,33 @@
             color: #555555;
             font-size: 13px;
         }
+
+        /* ===== Мобильная адаптация ===== */
+        @media (max-width: 768px) {
+            .header-container {
+                gap: 12px;
+                padding: 12px 16px;
+            }
+            .logo { font-size: 20px; }
+            .search-container {
+                order: 3;
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+            .search-container input { padding: 10px 14px; font-size: 14px; }
+            .search-container button { padding: 0 16px; }
+            .nav-actions { gap: 14px; }
+            .nav-btn { font-size: 10px; }
+            .nav-btn svg { width: 18px; height: 18px; }
+            .main-wrapper { margin: 25px auto; }
+            .page-header-title { font-size: 24px; margin-bottom: 20px; }
+            .grid-layout { grid-template-columns: 1fr; gap: 16px; }
+            .item-card { padding: 18px; }
+            .form-card { padding: 24px; }
+            .modal-view { padding: 28px; margin: 16px; }
+            footer { padding: 40px 16px 20px; margin-top: 60px; }
+            .footer-container { gap: 25px; padding-bottom: 25px; margin-bottom: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -370,190 +400,314 @@
     <header>
         <div class="header-container">
             <div class="logo" onclick="changePage('catalog')">G-M <span>SERVICE</span></div>
-Найти
-Вход
 
+            <div class="search-container">
+                <input type="text" id="query-input" placeholder="Поиск услуг и запчастей..." onkeydown="if(event.key==='Enter') execSearch()">
+                <button onclick="execSearch()">Найти</button>
+            </div>
 
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="toggleModal(true)">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    Вход
+                </button>
+                <button class="nav-btn" onclick="changePage('favorites')">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    Избранное
+                    <span class="counter-badge" id="fav-lbl">0</span>
+                </button>
+                <button class="nav-btn" onclick="changePage('cart')">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.2 14h9.5c.75 0 1.4-.4 1.7-1l3.6-6.5H5.2L4 4H1v2h2l3.6 7.6L5.2 16c-.15.3-.2.6-.2.9 0 1.1.9 2 2 2h12v-2H7.2z"/></svg>
+                    Корзина
+                    <span class="counter-badge" id="cart-lbl">0</span>
+                </button>
+                <button class="nav-btn" onclick="changePage('order')">
+                    <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    Заявка
+                </button>
+            </div>
+        </div>
+    </header>
 
-Избранное
-0
+    <!-- Контент -->
+    <div class="main-wrapper">
+        <!-- Каталог -->
+        <div id="view-catalog">
+            <h1 class="page-header-title">Услуги ремонта и комплектующие</h1>
+            <div class="grid-layout" id="catalog-renderer"></div>
+        </div>
 
+        <!-- Избранное -->
+        <div id="view-favorites" style="display:none;">
+            <h1 class="page-header-title">Избранное</h1>
+            <div class="grid-layout" id="favorites-renderer"></div>
+        </div>
 
+        <!-- Корзина -->
+        <div id="view-cart" style="display:none;">
+            <h1 class="page-header-title">Корзина выбранных услуг</h1>
+            <div id="cart-renderer"></div>
+        </div>
 
-Корзина
-0
+        <!-- Заявка -->
+        <div id="view-order" style="display:none;">
+            <h1 class="page-header-title" style="text-align:center;">Оформление заявки на ремонт</h1>
+            <div class="form-card">
+                <form id="submissionForm" onsubmit="handleFormSubmit(event)">
+                    <div class="input-wrapper">
+                        <label>Имя *</label>
+                        <input type="text" id="client-name" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Фамилия *</label>
+                        <input type="text" id="client-surname" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Номер телефона *</label>
+                        <input type="tel" id="client-phone" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Устройство *</label>
+                        <select id="client-device" required>
+                            <option value="">Выберите категорию...</option>
+                            <option>iPhone / iPad</option>
+                            <option>Samsung</option>
+                            <option>Xiaomi / Redmi</option>
+                            <option>Ноутбук / MacBook</option>
+                            <option>Другое устройство</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Описание неисправности *</label>
+                        <textarea id="client-desc" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width:100%; padding:15px; font-size:16px;">Отправить заявку в сервис</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <!-- Модалка входа -->
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal-view">
+            <span class="modal-close" onclick="toggleModal(false)">×</span>
+            <h2 style="font-size:24px; font-weight:800; margin-bottom:25px;">Вход в кабинет</h2>
+            <div class="input-wrapper">
+                <label>Логин или номер телефона *</label>
+                <input type="text">
+            </div>
+            <div class="input-wrapper">
+                <label style="display:flex; align-items:center; gap:8px; color:var(--text-muted);">
+                    <input type="checkbox" style="width:auto;"> Запомнить
+                </label>
+            </div>
+            <button class="primary-btn" style="width:100%; padding:14px;">Продолжить</button>
+            <p style="text-align:center; margin-top:15px;">
+                <a href="#" style="color:var(--accent-orange); font-size:14px;">Забыли пароль?</a>
+                &nbsp;·&nbsp;
+                <a href="#" style="color:var(--accent-orange); font-size:14px;">Зарегистрироваться</a>
+            </p>
+        </div>
+    </div>
 
+    <!-- Футер -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Услуги</h4>
+                <ul>
+                    <li><a href="#">Ремонт телефонов</a></li>
+                    <li><a href="#">Ремонт планшетов</a></li>
+                    <li><a href="#">Замена стекол дисплея</a></li>
+                    <li><a href="#">Сложная пайка BGA</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Компания</h4>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Помощь</h4>
+                <ul>
+                    <li><a href="#">Доставка</a></li>
+                    <li><a href="#">Оплата</a></li>
+                    <li><a href="#">Гарантия</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="tel:+79531789070">📞 +7 (953) 178-90-70</a></li>
+                    <li><a href="mailto:order@gmservice.ru">✉️ order@gmservice.ru</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-credits">
+            © 2026 G-M Service. Все права защищены. Качественный ремонт цифровой техники в СПб.
+        </div>
+    </footer>
 
-Заявка
+    <script>
+        // Статическая база данных услуг
+        const serviceDatabase = [
+            { id: 1, name: "Замена стекла Samsung S22 / S23 / S24 Ultra", price: 1000, category: "Samsung" },
+            { id: 2, name: "Дисплей с тачскрином для iPhone 11 (FOXCONN)", price: 2730, category: "iPhone" },
+            { id: 3, name: "Аккумулятор повышенной емкости для iPhone 13 Pro Max", price: 1950, category: "iPhone" },
+            { id: 4, name: "Замена стекла экрана Apple Watch s4 / s5 / s6", price: 2800, category: "iPhone" },
+            { id: 5, name: "Сложный BGA ремонт материнской платы MacBook / Asus", price: 1000, category: "Ноутбук" },
+            { id: 6, name: "Восстановление плат после попадания жидкости", price: 1000, category: "Другое" }
+        ];
 
+        let stateCart = [];
+        let stateFav = [];
 
+        // Вывод элементов в каталог
+        function renderCatalog(dataset = serviceDatabase) {
+            const grid = document.getElementById('catalog-renderer');
+            grid.innerHTML = '';
+            if (dataset.length === 0) {
+                grid.innerHTML = '<div class="state-empty" style="grid-column:1/-1;">Ничего не найдено. Попробуйте изменить запрос.</div>';
+                return;
+            }
+            dataset.forEach(item => {
+                grid.innerHTML += `
+                    <div class="item-card">
+                        <div>
+                            <div class="item-title">${item.name}</div>
+                            <div class="status-instock"><span>●</span> Запчасти в наличии</div>
+                        </div>
+                        <div>
+                            <div class="item-price">от ${item.price} ₽</div>
+                            <div class="card-action-row">
+                                <button class="primary-btn" onclick="pushToCart(${item.id})">В корзину</button>
+                                <button class="like-btn" onclick="pushToFav(${item.id})">❤️</button>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        }
 
-Услуги ремонта и комплектующие
+        // Переключение вкладок (SPA)
+        function changePage(targetId) {
+            const pages = ['catalog', 'favorites', 'cart', 'order'];
+            pages.forEach(p => {
+                document.getElementById('view-' + p).style.display = 'none';
+            });
+            document.getElementById('view-' + targetId).style.display = 'block';
+            window.scrollTo(0, 0);
+            if (targetId === 'cart') rebuildCartView();
+            if (targetId === 'favorites') rebuildFavView();
+        }
 
-Избранное
+        // Поиск
+        function execSearch() {
+            const val = document.getElementById('query-input').value.toLowerCase();
+            const filtered = serviceDatabase.filter(item => item.name.toLowerCase().includes(val));
+            changePage('catalog');
+            renderCatalog(filtered);
+        }
 
-Корзина выбранных услуг
+        // Добавление в корзину (с защитой от дубликатов)
+        function pushToCart(id) {
+            const target = serviceDatabase.find(x => x.id === id);
+            if (stateCart.some(x => x.id === id)) {
+                alert('Эта услуга уже в корзине');
+                return;
+            }
+            stateCart.push(target);
+            document.getElementById('cart-lbl').innerText = stateCart.length;
+            alert('Добавлено в корзину: ' + target.name);
+        }
 
-Оформление заявки на ремонт
+        // Добавление в избранное
+        function pushToFav(id) {
+            const target = serviceDatabase.find(x => x.id === id);
+            if (!stateFav.some(x => x.id === id)) {
+                stateFav.push(target);
+                document.getElementById('fav-lbl').innerText = stateFav.length;
+                alert('Добавлено в избранное');
+            } else {
+                alert('Уже в избранном');
+            }
+        }
 
+        // Сборка страницы корзины
+        function rebuildCartView() {
+            const root = document.getElementById('cart-renderer');
+            if (stateCart.length === 0) {
+                root.innerHTML = `
+                    <div class="state-empty">
+                        <div class="state-empty-icon">🛒</div>
+                        <h3 style="font-size:20px; font-weight:700; color:#fff;">Ваша корзина пуста</h3>
+                        <p style="margin-top:10px; font-size:14px;">Вы можете выбрать услуги в <a href="#" onclick="changePage('catalog'); return false;" style="color:var(--accent-orange); text-decoration:none;">каталоге</a></p>
+                    </div>`;
+                return;
+            }
+            let layout = '<div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:12px; padding:20px;">';
+            stateCart.forEach(item => {
+                layout += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid var(--border-color);">
+                        <span style="font-weight:600;">${item.name}</span>
+                        <span style="color:var(--accent-yellow); font-weight:700;">от ${item.price} ₽</span>
+                    </div>`;
+            });
+            const total = stateCart.reduce((sum, i) => sum + i.price, 0);
+            layout += `<div style="display:flex; justify-content:space-between; padding:16px 0; font-size:18px; font-weight:800;">
+                <span>Итого:</span><span style="color:var(--accent-yellow);">от ${total} ₽</span>
+            </div>`;
+            layout += `<button class="primary-btn" style="width:100%; margin-top:15px; padding:15px; font-size:16px;" onclick="changePage('order')">Перейти к оформлению заявки</button>`;
+            layout += '</div>';
+            root.innerHTML = layout;
+        }
 
-Имя *
-Фамилия *
-Номер телефона *
-Устройство *
-Выберите категорию...
-iPhone / iPad
-Samsung
-Xiaomi / Redmi
-Ноутбук / MacBook
-Другое устройство
+        // Сборка страницы избранного
+        function rebuildFavView() {
+            const root = document.getElementById('favorites-renderer');
+            root.innerHTML = '';
+            if (stateFav.length === 0) {
+                root.innerHTML = `
+                    <div class="state-empty" style="grid-column:1/-1;">
+                        <div class="state-empty-icon">❤️</div>
+                        <h3 style="font-size:20px; font-weight:700; color:#fff;">В избранном пока ничего нет</h3>
+                    </div>`;
+                return;
+            }
+            stateFav.forEach(item => {
+                root.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-title">${item.name}</div>
+                        <div>
+                            <div class="item-price">от ${item.price} ₽</div>
+                            <button class="primary-btn" style="width:100%;" onclick="pushToCart(${item.id})">Перенести в корзину</button>
+                        </div>
+                    </div>`;
+            });
+        }
 
+        // Модалка ЛК
+        function toggleModal(visible) {
+            document.getElementById('accountModal').style.display = visible ? 'flex' : 'none';
+        }
 
-Описание неисправности *
-Отправить заявку в сервис
+        // Сборка формы ремонта
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('client-name').value;
+            const surname = document.getElementById('client-surname').value;
+            const dev = document.getElementById('client-device').value;
+            alert(`Заявка успешно создана!\n\nУважаемый ${name} ${surname}, менеджер G-M Service свяжется с вами по указанному телефону в течение 10 минут для согласования ремонта устройства (${dev}).`);
+            document.getElementById('submissionForm').reset();
+            stateCart = [];
+            document.getElementById('cart-lbl').innerText = 0;
+            changePage('catalog');
+        }
 
-
-
-×
-Вход в кабинет
-Логин или номер телефона *
- Запомнить
-Забыли пароль?
-
-Продолжить
-Зарегистрироваться
-
-Услуги
-
-Ремонт телефонов
-Ремонт планшетов
-Замена стекол дисплея
-Сложная пайка BGA
-
-
-
-Компания
-
-О нас
-Вакансии
-Отзывы
-
-
-
-Помощь
-
-Доставка
-Оплата
-Гарантия
-
-
-
-Контакты
-📞 +7 (953) 178-90-70
-✉️ order@gmservice.ru
-
-
-
-© 2026 G-M Service. Все права защищены. Качественный ремонт цифровой техники в СПб.
-
-// Статическая база данных услуг
-const serviceDatabase = [
-{ id: 1, name: "Замена стекла Samsung S22 / S23 / S24 Ultra", price: 1000, category: "Samsung" },
-{ id: 2, name: "Дисплей с тачскрином для iPhone 11 (FOXCONN)", price: 2730, category: "iPhone" },
-{ id: 3, name: "Аккумулятор повышенной емкости для iPhone 13 Pro Max", price: 1950, category: "iPhone" },
-{ id: 4, name: "Замена стекла экрана Apple Watch s4 / s5 / s6", price: 2800, category: "iPhone" },
-{ id: 5, name: "Сложный BGA ремонт материнской платы MacBook / Asus", price: 1000, category: "Ноутбук" },
-{ id: 6, name: "Восстановление плат после попадания жидкости", price: 1000, category: "Другое" }
-];
-let stateCart = [];
-let stateFav = [];
-// Вывод элементов в каталог
-function renderCatalog(dataset = serviceDatabase) {
-const grid = document.getElementById('catalog-renderer');
-grid.innerHTML = '';
-if(dataset.length === 0) {
-grid.innerHTML = 'Ничего не найдено. Попробуйте изменить запрос.';
-return;
-}
-dataset.forEach(item => {
-grid.innerHTML += <div class="item-card"> <div> <div class="item-title">${item.name}</div> <div class="status-instock"><span>●</span> Запчасти в наличии</div> </div> <div> <div class="item-price">от ${item.price} ₽</div> <div class="card-action-row"> <button class="primary-btn" onclick="pushToCart(${item.id})">В корзину</button> <button class="like-btn" onclick="pushToFav(${item.id})">❤️</button> </div> </div> </div>;
-});
-}
-// Переключение вкладок (SPA)
-function changePage(targetId) {
-const pages = ['catalog', 'favorites', 'cart', 'order'];
-pages.forEach(p => {
-document.getElementById('view-' + p).style.display = 'none';
-});
-document.getElementById('view-' + targetId).style.display = 'block';
-window.scrollTo(0,0);
-if(targetId === 'cart') rebuildCartView();
-if(targetId === 'favorites') rebuildFavView();
-}
-// Поиск
-function execSearch() {
-const val = document.getElementById('query-input').value.toLowerCase();
-const filtered = serviceDatabase.filter(item => item.name.toLowerCase().includes(val));
-changePage('catalog');
-renderCatalog(filtered);
-}
-// Добавление элементов
-function pushToCart(id) {
-const target = serviceDatabase.find(x => x.id === id);
-stateCart.push(target);
-document.getElementById('cart-lbl').innerText = stateCart.length;
-alert('Добавлено в корзину: ' + target.name);
-}
-function pushToFav(id) {
-const target = serviceDatabase.find(x => x.id === id);
-if(!stateFav.some(x => x.id === id)) {
-stateFav.push(target);
-document.getElementById('fav-lbl').innerText = stateFav.length;
-alert('Добавлено в избранное');
-}
-}
-// Сборка страницы корзины
-function rebuildCartView() {
-const root = document.getElementById('cart-renderer');
-if(stateCart.length === 0) {
-root.innerHTML =  <div class="state-empty"> <div class="state-empty-icon">🛒</div> <h3 style="font-size:20px; font-weight:700; color:#fff;">Ваша корзина пуста</h3> <p style="margin-top:10px; font-size:14px;">Вы можете выбрать услуги в <a href="#" onclick="changePage('catalog'); return false;" style="color:var(--accent-orange); text-decoration:none;">каталоге</a></p> </div>;
-} else {
-let layout = '';
-stateCart.forEach(item => {
-layout +=  <div style="display:flex; justify-content:between; align-items:center; padding:16px 0; border-bottom:1px solid var(--border-color); justify-content: space-between;"> <span style="font-weight:600;">${item.name}</span> <span style="color:var(--accent-yellow); font-weight:700;">от ${item.price} ₽</span> </div>;
-});
-layout += <button class="primary-btn" style="width:100%; margin-top:25px; padding:15px; font-size:16px;" onclick="changePage('order')">Перейти к оформлению заявки</button></div>;
-root.innerHTML = layout;
-}
-}
-// Сборка страницы избранного
-function rebuildFavView() {
-const root = document.getElementById('favorites-renderer');
-root.innerHTML = '';
-if(stateFav.length === 0) {
-root.innerHTML =  <div class="state-empty" style="grid-column: 1/-1;"> <div class="state-empty-icon">❤️</div> <h3 style="font-size:20px; font-weight:700; color:#fff;">В избранном пока ничего нет</h3> </div>;
-} else {
-stateFav.forEach(item => {
-root.innerHTML +=  <div class="item-card"> <div class="item-title">${item.name}</div> <div> <div class="item-price">от ${item.price} ₽</div> <button class="primary-btn" style="width:100%;" onclick="pushToCart(${item.id})">Перенести в корзину</button> </div> </div>;
-});
-}
-}
-// Модалка ЛК
-function toggleModal(visible) {
-document.getElementById('accountModal').style.display = visible ? 'flex' : 'none';
-}
-// Сборка формы ремонта
-function handleFormSubmit(e) {
-e.preventDefault();
-const name = document.getElementById('client-name').value;
-const surname = document.getElementById('client-surname').value;
-const dev = document.getElementById('client-device').value;
-alert(Заявка успешно создана!\n\nУважаемый ${name} ${surname}, менеджер G-M Service свяжется с вами по указанному телефону в течение 10 минут для согласования ремонта устройства (${dev}).);
-document.getElementById('submissionForm').reset();
-stateCart = [];
-document.getElementById('cart-lbl').innerText = 0;
-changePage('catalog');
-}
-// Запуск приложения
-renderCatalog();
+        // Запуск приложения
+        renderCatalog();
+    </script>
+</body>
+</html>
